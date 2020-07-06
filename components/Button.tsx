@@ -10,8 +10,10 @@ interface Props {
 
 export default ({ text, variant, disabled, icon }: Props) => {
     const Icon = !!icon && Icons[icon]
-    return <button className="bg-grey hover:bg-blue duration-150 hover:text-grey rounded-none py-2 px-4 font-bold text-blue-dark outline-none  inline-flex items-center">
+    const mainStyles = 'bg-grey duration-150  rounded-none py-2 px-4 font-bold text-blue-dark outline-none  inline-flex items-center '
+    const hoverStyles = 'hover:text-grey hover:bg-blue'
+    return <button className={mainStyles + (!!disabled ? 'border-dashed border-2 border-blue-dark opacity-50' : hoverStyles)}>
         {text}
-        <Icon className='fill-current hover:text-grey ml-2 h-4 w-4 br' />
+        {Icon && <Icon className='fill-current hover:text-grey ml-2 h-4 w-4 br' />}
     </button>
 }
