@@ -29,7 +29,10 @@ export default ({ onChange, disabled, label, options }: Props) => {
                 {options.map(option => <option className='text-blue bg-white font-pop p-5' value={option.value}>{option.label}</option>)}
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                <svg className="fill-current h-4 w-4" viewBox="0 0 7.682 4.2">
+                    <path d="M3.468 3.992a.808.808 0 001.082 0l2.938-2.8A.668.668 0 106.54.25L4.089 2.561a.167.167 0 01-.22 0L1.111.161a.67.67 0 10-.882 1.008z" />
+                </svg>
+
             </div>
         </div>
     </>
