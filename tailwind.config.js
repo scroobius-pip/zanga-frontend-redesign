@@ -1,10 +1,11 @@
 module.exports = {
   theme: {
     fontFamily: {
-      text: ['Poppins', 'sans-serif'],
-
+      pop: ['Poppins', 'sans-serif'],
+      int: ['Inter', 'sans-serif']
     },
     colors: {
+      white: '#ffff',
       blue: {
         dark: '#234361',
         default: '#234361',
