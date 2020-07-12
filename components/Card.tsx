@@ -2,11 +2,12 @@ import React, { ReactChildren } from 'react'
 
 interface Props {
     children: React.ReactElement
-    user?: any
+    className?: string
+
 }
 
-export default ({ children }: Props) => {
-    return <div className='bg-white p-10 w-full max-w-sm shadow-lg'>
+export default ({ children, className }: Props) => {
+    return <div className={'bg-white p-10 w-full shadow-lg ' + className}>
         {children}
     </div>
 }

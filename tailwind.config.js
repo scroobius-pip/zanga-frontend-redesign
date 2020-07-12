@@ -1,8 +1,10 @@
 module.exports = {
+  // purge: ['./components/**/*.tsx', './pages/**/*.tsx', './icons/**/*.tsx'],
   theme: {
     fontFamily: {
-      pop: ['Poppins', 'sans-serif'],
-      int: ['Inter', 'sans-serif']
+      pop: ['Poppins',],
+      int: ['Inter',],
+      crim: ['Crimson Text']
     },
     colors: {
       white: '#ffff',

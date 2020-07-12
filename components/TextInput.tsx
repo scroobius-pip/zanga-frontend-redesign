@@ -5,15 +5,17 @@ interface Props {
     placeholder?: string
     label?: string
     disabled?: boolean
+    type?: string
 }
 
-export default ({ onChange, disabled, placeholder, label }: Props) => {
+export default ({ onChange, disabled, placeholder, label, type }: Props) => {
     return <>
         {!!label && <label htmlFor={label} className='font-text block  font-pop text-blue mb-2'>
             {label}
         </label>
         }
         <input
+            type={type}
             id={label}
             disabled={disabled}
             placeholder={placeholder}

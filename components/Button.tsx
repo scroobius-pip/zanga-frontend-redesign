@@ -19,6 +19,6 @@ export default ({ text, variant, disabled, icon, className }: Props) => {
         <span className='font-pop'>
             {text}
         </span>
-        {Icon && <Icon className='fill-current hover:text-grey ml-2 h-4 w-4 br' />}
+        {Icon && <Icon className='fill-current  ml-2 h-4 w-4' />}
     </button>
 }

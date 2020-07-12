@@ -13,7 +13,7 @@ interface Props {
     disabled?: boolean
 }
 
-export default ({ onChange, disabled, label, options }: Props) => {
+export default ({ onChange, disabled, label, options, initialValue }: Props) => {
     return <>
         {!!label && <label htmlFor={label} className='font-text block  font-pop text-blue mb-2'>
             {label}
@@ -22,6 +22,7 @@ export default ({ onChange, disabled, label, options }: Props) => {
         <div className='relative'>
 
             <select
+
                 disabled={disabled}
                 onChange={(e) => { console.log(e.target.value) }}
                 className='bg-grey font-int font-bold text-blue block w-full rounded-none duration-150 focus:outline-none py-2 px-4 appearance-none'
