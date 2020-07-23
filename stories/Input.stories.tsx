@@ -19,7 +19,11 @@ export const Text = () => {
 }
 
 export const Dropdown = () => {
+
+    const variants = select('Variant', { Light: 'light', Dark: 'dark' }, 'light', 'dropdown')
+
     return <DropdownInput
+        variant={variants}
         initialValue='Abuja'
         options={[{ label: 'Abuja', value: 'abuja' }, { label: 'Lagos', value: 'lagos' }]}
         label='State'

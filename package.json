@@ -23,6 +23,7 @@
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "@storybook/cli": "^5.3.19",
+    "@types/react-modal": "^3.10.6",
     "autoprefixer": "^9.8.4",
     "babel-loader": "^8.1.0",
     "isomorphic-unfetch": "^3.0.0",
@@ -33,7 +34,9 @@
     "postcss-import": "^12.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-image-lightbox": "^5.1.1",
     "react-markdown": "^4.3.1",
+    "react-responsive-modal": "^5.0.2",
     "react-styled-carousel-am": "^1.0.1",
     "yargs": "^15.3.1"
   },
@@ -47,8 +50,8 @@
     "babel-preset-react-app": "^9.1.2",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",
-    "typescript": "^3.9.5",
     "tailwindcss": "^1.4.6",
+    "typescript": "^3.9.5",
     "yarn-upgrade-all": "^0.5.2"
   }
 }

@@ -6,9 +6,9 @@ import Button from './Button'
 import states from '../assets/states'
 
 export default () => {
-    return <Card className=''>
+    return <Card noShadow className=''>
         <>
-            <div className=' w-full mb-5 grid   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+            <div className=' w-full mb-5 grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-5'>
                 <div className='w-full'>
                     <Dropdown
                         initialValue={'FCT'}
@@ -34,7 +34,7 @@ export default () => {
                     />
                 </div>
                 <div className='flex items-end '>
-                    <Button variant='primary' text='Find' icon='Search' onClick={() => { }} />
+                    <Button variant='primary' text='Search' icon='Search' onClick={() => { }} />
                 </div>
             </div>
             <div className='flex justify-end'>

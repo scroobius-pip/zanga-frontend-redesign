@@ -1,5 +1,4 @@
 import React from 'react'
-import Tag from '../components/Tag'
 import Layout from '../components/Layout'
 import PropertyFilter from '../components/PropertyFilter'
 import Card from '../components/Card'
@@ -12,7 +11,7 @@ const Page = () => (
   <Layout>
     <div >
       <div className=' bg-cover mb-15 bg-no-repeat px-5 py-10' style={{ backgroundImage: 'linear-gradient(#23436182, #23436182), url(https://ik.imagekit.io/myzanga/property_o444TeODtMI.jpg)' }}>
-        <h2 className='font-pop text-center font-medium text-4xl text-white py-10'>Find your next home</h2>
+        <h2 className='font-pop text-center font-medium text-4xl text-white py-10'>Find your ideal home</h2>
         <div className='max-w-screen-md m-auto '>
 
           <PropertyFilter />
