@@ -7,12 +7,15 @@ interface Props {
     [x: string]: any
 }
 
-// Modal.setAppElement('#_next')
 
 export default (Content: React.ElementType) => ({ visible, close, ...props }: Props) => {
 
     return <Modal
         styles={{
+            overlay: {
+                backgroundColor: 'rgba(35,67,97,0.5)',
+
+            } as CSSProperties,
             modal: {
                 padding: 0
             } as CSSProperties

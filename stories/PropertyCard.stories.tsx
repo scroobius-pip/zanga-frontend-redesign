@@ -1,6 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import PropertyCard from '../components/PropertyCard'
+import _PropertyCard from '../components/PropertyCard'
+import _DashboardPropertyCard from '../components/DashboardPropertyCard'
+
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 
 export default {
@@ -8,13 +10,20 @@ export default {
     decorators: [withKnobs]
 }
 
-export const PropertyCardComponent = () => (
-    <PropertyCard
+export const PropertyCard = () => (
+    <_PropertyCard
 
         {...property}
         featured={boolean('Featured', false)}
 
 
+    />
+)
+
+export const DashboardPropertyCard = () => (
+    <_DashboardPropertyCard
+        {...property}
+        featured={boolean('Featured', false)}
     />
 )
 

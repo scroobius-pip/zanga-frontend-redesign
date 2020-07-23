@@ -5,8 +5,10 @@ import Share from './Share'
 import Location from './Location'
 import Phone from './Phone'
 import Eye from './Eye'
+import Delete from './Delete'
+import Edit from './Edit'
 
-export type IconNames = 'Add' | 'Search' | 'Warning' | 'Info' | 'Right' | 'Share' | 'Location' | 'Phone' | 'Eye'
+export type IconNames = 'Add' | 'Search' | 'Warning' | 'Info' | 'Right' | 'Share' | 'Location' | 'Phone' | 'Eye' | 'Delete' | 'Edit'
 
 
 
@@ -17,5 +19,7 @@ export default {
     Location,
     Search,
     Phone,
-    Eye
+    Eye,
+    Delete,
+    Edit
 } as { [name in IconNames]: any }
