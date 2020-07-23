@@ -10,11 +10,12 @@ export default {
 
 export const Text = () => {
     const withLabel = boolean('With label', true)
+
     return <TextInput
         placeholder={'Placeholder'}
         onChange={() => { }}
         label={withLabel && 'Location'}
-
+        textArea={boolean('Text area', false)}
     />
 }
 
@@ -30,3 +31,4 @@ export const Dropdown = () => {
         onChange={() => { }}
     />
 }
+

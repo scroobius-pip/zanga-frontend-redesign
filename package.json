@@ -37,8 +37,10 @@
     "react-image-lightbox": "^5.1.1",
     "react-images-uploading": "^2.2.2",
     "react-markdown": "^4.3.1",
+    "react-mde": "^10.1.0",
     "react-responsive-modal": "^5.0.2",
     "react-styled-carousel-am": "^1.0.1",
+    "showdown": "^1.9.1",
     "yargs": "^15.3.1"
   },
   "devDependencies": {

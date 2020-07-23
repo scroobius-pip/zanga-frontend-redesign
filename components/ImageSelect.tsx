@@ -9,13 +9,15 @@ interface ImagePreviewProps {
 }
 
 const ImagePreview = (props: ImagePreviewProps) => {
-    return <div className='flex'>
+    return <div className='max-w-xs w-full '>
         <img
-            className=''
+
+            className='w-full'
             src={props.url}
         />
-        <div>
-
+        <div className='flex flex-row justify-end w-full'>
+            <Button text='' className='w-full' icon='Edit' onClick={props.onEdit} variant='secondary' />
+            <Button text='' className='w-full' icon='Delete' onClick={props.onDelete} variant='secondary' />
         </div>
     </div>
 }
@@ -50,12 +52,13 @@ export default (props: Props) => {
                 }
 
                 return <div>
-                    <Button icon='Add' variant='primary' onClick={onImageUpload} text='Upload Image' />
                     <div>
+                        <Button icon='Add' variant='secondary' onClick={onImageUpload} text='Upload Image' />
                         <div
-
+                            className='grid grid-cols-2 md:grid-cols-4 gap-5 mt-5'
                         >
                             {imageList.map(image => <ImagePreview
+                                key={image.key}
                                 url={image.dataURL}
                                 onEdit={image.onUpdate}
                                 onDelete={image.onRemove}

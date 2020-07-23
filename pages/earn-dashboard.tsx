@@ -4,6 +4,7 @@ import Card from '../components/Card'
 import Button from '../components/Button'
 import Info from '../icons/Info'
 import Pagination from '../components/Pagination'
+import InfoBar from '../components/InfoBar'
 
 export default () => {
     return <Layout>
@@ -33,10 +34,12 @@ export default () => {
                 </Card>
                 <Card className=' mt-5 bg-blue'>
                     <div className=''>
-                        <div className='flex align-middle items-center'>
-                            <Info className='w-6  fill-current text-white mr-3' />
-                            <span className='text-white font-semibold text-lg font-pop '>How to earn</span>
-                        </div>
+
+                        <InfoBar
+                            icon='Info'
+                            text='How to earn'
+                            className=' font-semibold text-white'
+                        />
                         <div className='ml-5 mt-5'>
                             <ol className='list-decimal text-white'>
                                 <li className='m-2'>Head over to www.myzanga.com/properties</li>

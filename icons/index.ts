@@ -7,8 +7,10 @@ import Phone from './Phone'
 import Eye from './Eye'
 import Delete from './Delete'
 import Edit from './Edit'
+import Info from './Info'
+import Warning from './Warning'
 
-export type IconNames = 'Add' | 'Search' | 'Warning' | 'Info' | 'Right' | 'Share' | 'Location' | 'Phone' | 'Eye' | 'Delete' | 'Edit'
+export type IconNames = 'Add' | 'Search' | 'Warning' | 'Info' | 'Right' | 'Share' | 'Location' | 'Phone' | 'Eye' | 'Delete' | 'Edit' | 'Warning'
 
 
 
@@ -21,5 +23,7 @@ export default {
     Phone,
     Eye,
     Delete,
-    Edit
+    Edit,
+    Info,
+    Warning
 } as { [name in IconNames]: any }

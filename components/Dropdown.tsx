@@ -6,15 +6,17 @@ interface Option {
 }
 
 interface Props {
-    onChange: (text: string) => any
+    ref?: any
+    onChange?: (text: string) => any
     initialValue: string
     label?: string
     options: Option[]
     disabled?: boolean
     variant?: 'light' | 'dark'
+    name?: string
 }
 
-export default ({ onChange, disabled, label, options, initialValue, variant = 'light' }: Props) => {
+export default ({ onChange, disabled, label, options, initialValue, name = '', variant = 'light', ref }: Props) => {
     const variantStyle = variant === 'light' ? 'bg-grey text-blue' : 'bg-blue text-grey'
 
     return <>
@@ -25,9 +27,10 @@ export default ({ onChange, disabled, label, options, initialValue, variant = 'l
         <div className='relative opacity-75 hover:opacity-100 duration-150 '>
 
             <select
-
+                name={name}
+                ref={ref}
                 disabled={disabled}
-                onChange={(e) => { console.log(e.target.value) }}
+                onChange={(e) => { onChange && onChange(e.target.value) }}
                 className={`font-int font-bold block w-full rounded-none duration-150 focus:outline-none py-2 px-4 appearance-none ${variantStyle}`}
             >
                 {options.map(option => <option className='text-blue bg-white font-pop p-5' value={option.value}>{option.label}</option>)}
