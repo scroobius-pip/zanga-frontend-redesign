@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import Card from '../components/Card'
 import Button from '../components/Button'
 import Info from '../icons/Info'
 import Pagination from '../components/Pagination'
 import InfoBar from '../components/InfoBar'
+import { WithdrawModal } from '../components/Modals'
 
 export default () => {
+    const [withdrawVisible, setWithdrawVisible] = useState(false)
+
     return <Layout>
         <div className='max-w-6xl m-auto my-10'>
+            <WithdrawModal
+                balance={5000}
+                close={() => setWithdrawVisible(false)}
+                visible={withdrawVisible}
+            />
             <h4 className='font-pop text-blue font-medium'>Welcome Simdi!</h4>
             <h2 className='font-bold font-pop text-blue text-3xl'>Dashboard</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 align-middle items-center gap-3 justify-center'>
@@ -26,7 +34,7 @@ export default () => {
                             <Button
                                 variant={'primary'}
                                 text='Withdraw Funds'
-                                onClick={() => { }}
+                                onClick={() => setWithdrawVisible(true)}
 
                             />
                         </div>
@@ -43,7 +51,7 @@ export default () => {
                         <div className='ml-5 mt-5'>
                             <ol className='list-decimal text-white'>
                                 <li className='m-2'>Head over to www.myzanga.com/properties</li>
-                                <li className='m-2'> Click the share button to generate your special sharing link. The button shows how much you earn when you share.  <img /> {/* Share button screenshot */}</li>
+                                <li className='m-2'> Click the share button to generate your special sharing link. The button shows how much you earn each time a unique visitor visits your link  <img /> {/* Share button screenshot */}</li>
                                 <li className='m-2'> Copy the link and post online, anyone who visits the link through it would earn you money.</li>
 
                             </ol>

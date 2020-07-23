@@ -4,11 +4,10 @@ import { Modal } from 'react-responsive-modal';
 interface Props {
     visible: boolean
     close: () => any
-    [x: string]: any
+    // [x: string]: any
 }
 
-
-export default (Content: React.ElementType) => ({ visible, close, ...props }: Props) => {
+export default <T,>(Content: React.ElementType) => ({ visible, close, ...props }: Props & T) => {
 
     return <Modal
         styles={{
@@ -29,3 +28,4 @@ export default (Content: React.ElementType) => ({ visible, close, ...props }: Pr
 
     </Modal>
 }
+
