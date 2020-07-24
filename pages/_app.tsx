@@ -1,7 +1,7 @@
 import '../css/fonts.css'
 import '../css/tailwind.css'
-import '../css/react-responsive-modal.css'
-import '../css/react-image-lightbox.css'
+import 'react-responsive-modal/styles.css'
+import 'react-image-lightbox/style.css'
 
 export default function MyApp({ Component, pageProps }) {
   return <>

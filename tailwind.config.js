@@ -1,5 +1,5 @@
 module.exports = {
-  // purge: ['./components/**/*.tsx', './pages/**/*.tsx', './icons/**/*.tsx'],
+  purge: ['./components/**/*.tsx', './pages/**/*.tsx', './icons/**/*.tsx'],
   theme: {
     gridRow: {
       1: '1'
