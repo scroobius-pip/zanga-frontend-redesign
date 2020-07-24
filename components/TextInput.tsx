@@ -6,13 +6,14 @@ interface Props {
     label?: string
     disabled?: boolean
     type?: string
-    value?: string
+    value?: string | number
     textArea?: boolean
     ref?: any
     name?: string
+    editable?: boolean
 }
 
-export default ({ onChange, disabled, placeholder, label, type, value, name = '', textArea = false, ref }: Props) => {
+export default ({ onChange, disabled, placeholder, label, type, value, name = '', textArea = false, ref, editable = true }: Props) => {
     // const Input = textArea ? textarea : input
 
     return <>
@@ -21,6 +22,7 @@ export default ({ onChange, disabled, placeholder, label, type, value, name = ''
         </label>
         }
         {!textArea ? <input
+            contentEditable={editable}
             name={name}
             onChange={(e) => { onChange && onChange(e.target.value) }}
             value={value}
@@ -32,6 +34,7 @@ export default ({ onChange, disabled, placeholder, label, type, value, name = ''
             className='bg-grey font-int font-text font-bold text-blue block w-full rounded-none duration-150 focus:outline-none py-2 px-4 appearance-none'
         /> :
             <textarea
+                contentEditable={editable}
                 name={name}
                 onChange={(e) => { onChange && onChange(e.target.value) }}
                 ref={ref}

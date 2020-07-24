@@ -10,15 +10,17 @@ export interface Props {
 }
 
 export default ({ title, price, description, image }: Props) => {
-    return <div className='min-h-full overflow-hidden shadow-lg w-full group text-center'>
+    return <a href='/property/d' className='min-h-full overflow-hidden shadow-lg w-full group text-center'>
         <div className='duration-100 opacity-75 hover:opacity-100 relative '>
-            <Button
-                className='absolute right-0 bottom-0 opacity-0 group-hover:opacity-100 duration-200'
-                variant='secondary'
-                onClick={() => { }}
-                text='View'
-                icon='Right'
-            />
+            <a href='/property/d'>
+                <Button
+                    className='absolute right-0 bottom-0 opacity-0 group-hover:opacity-100 duration-200'
+                    variant='secondary'
+                    onClick={() => { }}
+                    text='View'
+                    icon='Right'
+                />
+            </a>
             <img className='w-full ' alt={title} src={image} />
         </div>
 
@@ -30,5 +32,5 @@ export default ({ title, price, description, image }: Props) => {
             </div>
             <h5 className='font-pop text-xl text-blue'>{price}</h5>
         </div>
-    </div>
+    </a>
 }

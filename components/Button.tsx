@@ -29,7 +29,7 @@ export default ({ text, variant, disabled, icon, className, onClick, ref, input 
 
         </div>
 
-    return <button onClick={onClick} className={(className + ' ' ?? '') + variantStyles + mainStyles + (!!disabled ? 'border-dashed border-2 border-blue-dark opacity-50' : hoverStyles)}>
+    return <button disabled={disabled} onClick={onClick} className={(className + ' ' ?? '') + variantStyles + mainStyles + (!!disabled ? 'border-blue-dark opacity-50' : hoverStyles)}>
         <span className='font-pop font-normal'>
             {text}
         </span>

@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../../components/Layout'
 import Card from '../../components/Card'
 import Icons from '../../icons'
 import Button from '../../components/Button'
 import PropertyDescription from '../../components/PropertyDescription'
 import Lightbox from 'react-image-lightbox';
+import { ShareLinkModal } from '../../components/Modals'
 
 const images = [
     '//placekitten.com/1500/500',
@@ -15,18 +16,22 @@ const images = [
 
 
 const Page = () => {
+
     const [photoIndex, setPhotoIndex] = useState(0)
-    const [isOpen, setIsOpen] = useState(false)
+    const [lightBoxIsOpen, setLightBoxIsOpen] = useState(false)
+    const [shareLinkModalVisible, setShareLinkModalVisible] = useState(false)
+    const [agentInfo, setAgentInfo] = useState(false)
+
 
     return <Layout>
         <>
             {
-                isOpen && (
+                lightBoxIsOpen && (
                     <Lightbox
                         mainSrc={images[photoIndex]}
                         nextSrc={images[(photoIndex + 1) % images.length]}
                         prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-                        onCloseRequest={() => setIsOpen(false)}
+                        onCloseRequest={() => setLightBoxIsOpen(false)}
                         onMovePrevRequest={() =>
                             setPhotoIndex((photoIndex + images.length - 1) % images.length)
 
@@ -38,6 +43,12 @@ const Page = () => {
                     />
                 )
             }
+            <ShareLinkModal
+                close={() => setShareLinkModalVisible(false)}
+                title='Property Testing'
+                url='localhost:3000?ref=dsfaasfdsa'
+                visible={shareLinkModalVisible}
+            />
             <Card className='my-10 max-w-6xl m-auto' noShadow>
 
                 <div>
@@ -48,7 +59,7 @@ const Page = () => {
                                 className='font-light block'
                                 icon='Share'
                                 variant='secondary'
-                                onClick={() => { }}
+                                onClick={() => setShareLinkModalVisible(true)}
                                 text={`₦${10}/share`}
                             />
                             <div className='text-red font-bold text-sm'>Remaining ₦210</div>
@@ -73,7 +84,7 @@ const Page = () => {
 
                                     variant='secondary'
                                     icon='Eye'
-                                    onClick={() => setIsOpen(true)}
+                                    onClick={() => setLightBoxIsOpen(true)}
                                     text='Photos (15)'
                                 />
                             </div>
@@ -88,14 +99,18 @@ const Page = () => {
                             />
                         </p>
                     </div>
-                    <div className='flex  font-pop justify-end mt-10'>
+                    <div style={{ maxWidth: '15rem' }} className=' ml-auto mt-10'>
                         <Button
                             variant='primary'
-                            className=''
+                            className='w-full'
                             icon='Phone'
-                            onClick={() => { }}
+                            onClick={() => setAgentInfo(true)}
                             text='Contact Agent'
                         />
+                        {agentInfo && <div className='bg-grey text-center p-2 w-full'>
+                            <h5>Sekiro & Sons</h5>
+                            <a className='font-pop text-blue font-bold' href={`tel:07085243292`}>07085243292</a>
+                        </div>}
                     </div>
                 </div>
             </Card>

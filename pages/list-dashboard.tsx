@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import Card from '../components/Card'
 import Button from '../components/Button'
 import Info from '../icons/Info'
 import Pagination from '../components/Pagination'
 import DashboardPropertyCard from '../components/DashboardPropertyCard'
+import { AssignBountyModal, TopupBalanceModal } from '../components/Modals'
 
 export default () => {
+    const [bountyVisible, setBountyVisible] = useState(false)
+    const [topupVisible, setTopupVisible] = useState(false)
+
     return <Layout>
         <div className='max-w-6xl m-auto my-10'>
+            <AssignBountyModal
+                visible={bountyVisible}
+                close={() => setBountyVisible(false)}
+            />
+            <TopupBalanceModal
+                visible={topupVisible}
+                close={() => setTopupVisible(false)}
+            />
             <h4 className='font-pop text-blue font-medium'>Welcome Simdi!</h4>
             <h2 className='font-bold font-pop text-blue text-3xl'>Dashboard</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 align-middle items-center gap-3 justify-center'>
@@ -26,7 +38,7 @@ export default () => {
                             <Button
                                 variant={'primary'}
                                 text='Topup Balance'
-                                onClick={() => { }}
+                                onClick={() => setTopupVisible(true)}
 
                             />
                         </div>
@@ -36,23 +48,28 @@ export default () => {
             </div>
             <div>
                 <h3 className='font-bold text-blue mt-16 font-pop text-3xl'>Properties (3)</h3>
-                <Button
-                    variant={'primary'}
-                    icon='Add'
-                    text='Create Property'
-                    onClick={() => { }}
+                <a href='/add-property'>
+                    <Button
+                        variant={'primary'}
+                        icon='Add'
+                        text='Create Property'
+                        onClick={() => { }}
 
-                />
+                    />
+                </a>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6'>
                     <DashboardPropertyCard
+                        setBounty={() => setBountyVisible(true)}
                         featured={false}
                         {...property}
                     />
                     <DashboardPropertyCard
+                        setBounty={() => setBountyVisible(true)}
                         featured={false}
                         {...property}
                     />
                     <DashboardPropertyCard
+                        setBounty={() => setBountyVisible(true)}
                         featured={false}
                         {...property}
                     />

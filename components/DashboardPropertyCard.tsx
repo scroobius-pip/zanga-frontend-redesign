@@ -12,7 +12,7 @@ interface Property {
     bounty: number
 }
 
-export default ({ description, featured = false, id, image, price, title, location, bounty }: Property) => {
+export default ({ description, featured = false, id, image, price, title, location, bounty, setBounty }: Property & { setBounty: () => any }) => {
     const [showMore, setShowMore] = useState(false)
 
     return <div className={'p-5 shadow-xl hover:shadow-md duration-700 mb-1 w-ful bg-white border-2 hover:border-opacity-100 border-opacity-0 border-solid ' + (!featured ? 'border-blue' : 'border-orange')}>
@@ -39,7 +39,7 @@ export default ({ description, featured = false, id, image, price, title, locati
             <Button
                 icon='Add'
                 text='Assign a Bounty'
-                onClick={() => { }}
+                onClick={setBounty}
                 variant='primary'
                 className='w-full'
             />
