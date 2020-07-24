@@ -59,8 +59,8 @@ export default (props: Props) => {
                         onClick={() => { }}
                     />
                     <InfoBar
-                        className='text-blue opacity-75 mt-5'
-                        text='10% service charge deducted'
+                        className='text-blue opacity-75 mt-5 text-right'
+                        text='10% service charge'
                         icon='Info'
                     />
                 </div>

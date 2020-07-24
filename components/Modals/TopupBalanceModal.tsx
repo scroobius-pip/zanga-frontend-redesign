@@ -14,7 +14,7 @@ export default () => {
 
     return <Card noShadow>
         <div>
-            <h2 className=' text-center font-pop text-xl font-bold text-blue mb-5'>Withdraw Balance </h2>
+            <h2 className=' text-center font-pop text-xl font-bold text-blue mb-5'>Topup Balance </h2>
             <div>
 
                 <InfoBar

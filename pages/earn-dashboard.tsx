@@ -40,7 +40,7 @@ export default () => {
                         </div>
                     </>
                 </Card>
-                <Card className=' mt-5 bg-blue'>
+                <Card noShadow className=' mt-5 bg-blue'>
                     <div className=''>
 
                         <InfoBar

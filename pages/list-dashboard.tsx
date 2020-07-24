@@ -6,6 +6,7 @@ import Info from '../icons/Info'
 import Pagination from '../components/Pagination'
 import DashboardPropertyCard from '../components/DashboardPropertyCard'
 import { AssignBountyModal, TopupBalanceModal } from '../components/Modals'
+import InfoBar from '../components/InfoBar'
 
 export default () => {
     const [bountyVisible, setBountyVisible] = useState(false)
@@ -44,7 +45,20 @@ export default () => {
                         </div>
                     </>
                 </Card>
+                <Card noShadow className=' mt-5 bg-orange'>
+                    <div className=''>
 
+                        <InfoBar
+                            icon='Info'
+                            text='Premium Service'
+                            className=' font-semibold text-blue'
+                        />
+                        <div className='ml-5 mt-5'>
+                            <p className='text-blue'>Use our premium service to have your property featured, with our agents managing and marketing your property catalogue.</p>
+
+                        </div>
+                    </div>
+                </Card>
             </div>
             <div>
                 <h3 className='font-bold text-blue mt-16 font-pop text-3xl'>Properties (3)</h3>

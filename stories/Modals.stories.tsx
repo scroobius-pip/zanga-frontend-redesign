@@ -12,5 +12,5 @@ export const LoginModalComponent = () => {
 }
 
 export const WithdrawModalComponent = () => {
-    return <WithdrawModal />
+    return <WithdrawModal balance={100} />
 }

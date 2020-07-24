@@ -14,7 +14,7 @@ export interface Props {
 export default (props: Props) => {
     return <Card noShadow>
         <div>
-            <h2 className=' text-center font-pop text-xl font-bold text-blue mb-5'>Withdraw Balance </h2>
+            <h2 className=' text-center font-pop text-xl font-bold text-blue mb-5'>Assign Bounty </h2>
             <div>
 
                 <InfoBar
@@ -58,6 +58,11 @@ export default (props: Props) => {
                         variant='primary'
                         icon='Add'
                         onClick={() => { }}
+                    />
+                    <InfoBar
+                        className='text-right text-red mt-3'
+                        icon='Warning'
+                        text="You won't be able to change the bounty after setting it."
                     />
 
                 </div>
