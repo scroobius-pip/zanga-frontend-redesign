@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
-import Card from '../components/Card'
-import Button from '../components/Button'
-import Info from '../icons/Info'
-import Pagination from '../components/Pagination'
-import InfoBar from '../components/InfoBar'
-import { WithdrawModal } from '../components/Modals'
+import Layout from '../Layout'
+import Card from '../Card'
+import Button from '../Button'
+import Info from '../../icons/Info'
+import Pagination from '../Pagination'
+import InfoBar from '../InfoBar'
+import { WithdrawModal } from '../Modals'
 
 export default () => {
     const [withdrawVisible, setWithdrawVisible] = useState(false)
 
-    return <Layout>
+    return <>
         <div className='max-w-6xl m-auto my-10'>
             <WithdrawModal
                 balance={5000}
@@ -98,5 +98,5 @@ export default () => {
                 </div>
             </div>
         </div>
-    </Layout>
+    </>
 }

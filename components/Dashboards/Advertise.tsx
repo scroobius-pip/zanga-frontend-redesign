@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
-import Card from '../components/Card'
-import Button from '../components/Button'
-import Info from '../icons/Info'
-import Pagination from '../components/Pagination'
-import DashboardPropertyCard from '../components/DashboardPropertyCard'
-import { AssignBountyModal, TopupBalanceModal } from '../components/Modals'
-import InfoBar from '../components/InfoBar'
+import Layout from '../Layout'
+import Card from '../Card'
+import Button from '../Button'
+import Info from '../../icons/Info'
+import Pagination from '../Pagination'
+import DashboardPropertyCard from '../DashboardPropertyCard'
+import { AssignBountyModal, TopupBalanceModal } from '../Modals'
+import InfoBar from '../InfoBar'
 
 export default () => {
     const [bountyVisible, setBountyVisible] = useState(false)
     const [topupVisible, setTopupVisible] = useState(false)
 
-    return <Layout>
+    return <>
         <div className='max-w-6xl m-auto my-10'>
             <AssignBountyModal
                 visible={bountyVisible}
@@ -130,7 +130,7 @@ export default () => {
                 </div>
             </div>
         </div>
-    </Layout>
+    </>
 }
 
 const property = {

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import Avatar from 'react-avatar';
 import Popover from 'react-tiny-popover'
+import { signout } from 'next-auth/client'
 
 interface Props {
     userName: string
+    image: string
 }
 
 export default (props: Props) => {
@@ -22,7 +24,7 @@ export default (props: Props) => {
                     <a href='/dashboard'>
                         <li className='py-5 px-10 hover:bg-blue  text-center duration-150 hover:text-white  font-pop'>Dashboard</li>
                     </a>
-                    <a href='/logout'>
+                    <a href='#' onClick={signout}>
                         <li className='py-5 px-10 hover:bg-blue  text-center   duration-150 hover:text-white  font-pop'>Logout</li>
                     </a>
                 </ol>
@@ -30,7 +32,7 @@ export default (props: Props) => {
         }}
     >
         <div className='inline-block'>
-            <Avatar size={'3rem'} onClick={() => setOpen(!open)} round name={props.userName} />
+            <Avatar src={props.image} size={'3rem'} onClick={() => setOpen(!open)} round name={props.userName} />
         </div>
     </Popover>
 }

@@ -4,11 +4,17 @@ import PropertyFilter from '../components/PropertyFilter'
 import Card from '../components/Card'
 import Button from '../components/Button'
 import FeaturedPropertyCardSlider from '../components/FeaturedPropertyCardSlider'
+import { getSession } from 'next-auth/client'
+import WithSession from '../components/WithSession'
 
 
 
-const Page = () => (
-  <Layout>
+interface Props {
+  session: Session
+}
+
+const Page = ({ session }: Props) => (
+  <Layout session={session}>
     <div >
       <div className=' bg-cover mb-15 bg-no-repeat px-5 py-10' style={{ backgroundImage: 'linear-gradient(#23436182, #23436182), url(https://ik.imagekit.io/myzanga/property_o444TeODtMI.jpg)' }}>
         <h2 className='font-pop text-center font-medium text-4xl text-white py-10'>Find your ideal home</h2>
@@ -124,4 +130,4 @@ const Page = () => (
 )
 
 
-export default Page
+export default WithSession(Page)

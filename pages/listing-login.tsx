@@ -2,10 +2,11 @@ import React from 'react'
 import Layout from '../components/Layout'
 import Card from '../components/Card'
 import SocialLoginButtons from '../components/SocialLoginButtons'
+import WithSession from '../components/WithSession'
 
 
-const Page = () => {
-    return <Layout >
+const Page = ({ session }) => {
+    return <Layout session={session}>
         <Card className='max-w-screen-xl m-auto my-12 py-16'>
             <>
                 <img className='w-8 m-auto mb-3' src={require('../assets/images/logo-z.svg')} />
@@ -46,4 +47,4 @@ Give zanga users incentive to share your property. </p>
 }
 
 
-export default Page
+export default WithSession(Page)

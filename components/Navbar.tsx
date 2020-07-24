@@ -6,6 +6,7 @@ import AvatarMenu from './AvatarMenu'
 
 interface Props {
     userName?: string
+    image?: string
 }
 
 export default (props: Props) => {
@@ -19,7 +20,7 @@ export default (props: Props) => {
             </a>
             {props.userName ?
 
-                <AvatarMenu userName={props.userName} /> :
+                <AvatarMenu image={props.image} userName={props.userName} /> :
                 <div>
 
                     <Button
