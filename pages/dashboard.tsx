@@ -12,4 +12,6 @@ const Page = ({ session }) => {
     </Layout>
 }
 
+
+
 export default WithSession(Page)

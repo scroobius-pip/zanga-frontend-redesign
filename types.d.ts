@@ -10,4 +10,5 @@ interface Session {
         name: string
         image: string
     }
+    token?: string
 }

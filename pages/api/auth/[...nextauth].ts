@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
+import jwt from 'jsonwebtoken'
 
 const options = {
     site: 'http://localhost:3000',
@@ -21,7 +22,12 @@ const options = {
         secret: process.env.JWT_SECRET
     },
     callbacks: {
+        async session(session, token) {
+            const user = { email: token.user.email }
+            const jwtToken = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1000d' })
 
+            return Promise.resolve({ ...session, user: { ...session.user, }, token: jwtToken })
+        }
     }
 }
 
