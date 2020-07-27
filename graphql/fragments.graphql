@@ -8,6 +8,7 @@ fragment PropertyDetails on Property {
       state
       city
       costValue
+      featured
       costType
       owner {
         name

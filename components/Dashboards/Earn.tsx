@@ -7,7 +7,7 @@ import Pagination from '../Pagination'
 import InfoBar from '../InfoBar'
 import { WithdrawModal } from '../Modals'
 
-export default () => {
+export default (session: Session) => {
     const [withdrawVisible, setWithdrawVisible] = useState(false)
 
     return <>

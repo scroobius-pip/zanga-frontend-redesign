@@ -101,8 +101,8 @@ export type Image = {
 
 export type PageInfo = {
   __typename?: 'PageInfo';
-  hasNextPage: Scalars['Boolean'];
-  hasPreviousPage: Scalars['Boolean'];
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
 };
 
 export type PropertyPointPage = {
@@ -217,7 +217,7 @@ export enum CacheControlScope {
 
 export type PropertyDetailsFragment = (
   { __typename?: 'Property' }
-  & Pick<Property, 'id' | 'bounty' | 'expense' | 'remainingExpense' | 'title' | 'visits' | 'state' | 'city' | 'costValue' | 'costType' | 'description' | 'slug'>
+  & Pick<Property, 'id' | 'bounty' | 'expense' | 'remainingExpense' | 'title' | 'visits' | 'state' | 'city' | 'costValue' | 'featured' | 'costType' | 'description' | 'slug'>
   & { owner: (
     { __typename?: 'User' }
     & Pick<User, 'name' | 'phone'>
@@ -277,7 +277,7 @@ export type PropertiesQuery = (
       & PropertyDetailsFragment
     )>>, pageInfo: (
       { __typename?: 'PageInfo' }
-      & Pick<PageInfo, 'hasNextPage' | 'hasPreviousPage'>
+      & Pick<PageInfo, 'after' | 'before'>
     ) }
   ) }
 );
@@ -295,6 +295,16 @@ export type PropertyQuery = (
   )> }
 );
 
+export type UpdateUserMutationVariables = Exact<{
+  input: UserInput;
+}>;
+
+
+export type UpdateUserMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'updateUser'>
+);
+
 export const PropertyDetailsFragmentDoc = gql`
     fragment PropertyDetails on Property {
   id
@@ -306,6 +316,7 @@ export const PropertyDetailsFragmentDoc = gql`
   state
   city
   costValue
+  featured
   costType
   owner {
     name
@@ -350,8 +361,8 @@ export const PropertiesDocument = gql`
       ...PropertyDetails
     }
     pageInfo {
-      hasNextPage
-      hasPreviousPage
+      after
+      before
     }
   }
 }
@@ -363,6 +374,11 @@ export const PropertyDocument = gql`
   }
 }
     ${PropertyDetailsFragmentDoc}`;
+export const UpdateUserDocument = gql`
+    mutation updateUser($input: UserInput!) {
+  updateUser(input: $input)
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: () => Promise<T>) => Promise<T>;
 
@@ -384,6 +400,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     property(variables: PropertyQueryVariables): Promise<PropertyQuery> {
       return withWrapper(() => client.request<PropertyQuery>(print(PropertyDocument), variables));
+    },
+    updateUser(variables: UpdateUserMutationVariables): Promise<UpdateUserMutation> {
+      return withWrapper(() => client.request<UpdateUserMutation>(print(UpdateUserDocument), variables));
     }
   };
 }

@@ -4,8 +4,8 @@ query properties($input:PropertiesInput!) {
       ...PropertyDetails
   }
   pageInfo{
-    hasNextPage
-    hasPreviousPage
+    after
+    before
   }
 }
 }

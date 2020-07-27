@@ -9,9 +9,10 @@ interface Props {
     className?: string
     input?: boolean
     ref?: any
+    preventDefault?: boolean
 }
 
-export default ({ text, variant, disabled, icon, className, onClick, ref, input = false }: Props) => {
+export default ({ text, variant, disabled, icon, className, onClick, ref, input = false, preventDefault = true }: Props) => {
     const Icon = !!icon && Icons[icon]
     const mainStyles = 'focus:outline-none justify-between duration-200 rounded-none py-2 px-6 outline-none inline-flex items-center font-bold '
     const variantStyles = variant === 'secondary' ? 'bg-grey text-blue ' : 'bg-blue text-grey '
@@ -29,8 +30,15 @@ export default ({ text, variant, disabled, icon, className, onClick, ref, input 
 
         </div>
 
-    return <button disabled={disabled} onClick={onClick} className={(className + ' ' ?? '') + variantStyles + mainStyles + (!!disabled ? 'border-blue-dark opacity-50' : hoverStyles)}>
-        <span className='font-pop font-normal'>
+    return <button disabled={disabled} onClick={(e) => {
+
+        onClick()
+        if (preventDefault) {
+            e.preventDefault()
+
+        }
+    }} className={(className + ' ' ?? '') + variantStyles + mainStyles + (!!disabled ? 'border-blue-dark opacity-50' : hoverStyles)}>
+        <span className='font-pop font89-normal'>
             {text}
         </span>
         {Icon && <Icon className={`fill-current  ml-2 h-4 w-4`} />}

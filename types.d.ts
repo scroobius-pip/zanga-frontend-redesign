@@ -1,7 +1,10 @@
+import { UserType } from './generated/graphql';
+
 interface User {
     name: string
     image: string
     id: string
+    type: UserType
 }
 
 

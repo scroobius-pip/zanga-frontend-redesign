@@ -10,12 +10,13 @@ interface Property {
     featured: boolean
     location: string
     bounty: number
+    slug: string
 }
 
-export default ({ description, featured = false, id, image, price, title, location, bounty }: Property) => {
+export default ({ description, slug, featured = false, id, image, price, title, location, bounty, onShare }: Property & { onShare: (title: string, slug: string) => any }) => {
     const [showMore, setShowMore] = useState(false)
 
-    return <div className={'p-5 shadow-xl hover:shadow-md duration-700 mb-1 w-ful bg-white border-2 hover:border-opacity-100 border-opacity-0 border-solid ' + (!featured ? 'border-blue' : 'border-orange')}>
+    return <a href={`/property/${slug}`}><div className={'p-5 shadow-xl hover:shadow-md duration-700 mb-1 w-ful bg-white border-2 hover:border-opacity-100 border-opacity-0 border-solid ' + (!featured ? 'border-blue' : 'border-orange')}>
         <div className='w-full flex justify-end mb-2'>
             {featured && <div className='text-blue font-pop py-2 px-4 bg-orange bg-opacity-100   border-2 border-solid border-orange text-sm'>Promoted</div>}
         </div>
@@ -33,7 +34,7 @@ export default ({ description, featured = false, id, image, price, title, locati
         </div>
         <div className='mb-5'>
             <p className={'text-blue duration-150 font-pop mb-2 ' + (!showMore ? 'truncate' : '')}>{description}</p>
-            <div className='text-blue opacity-25 hover:opacity-100 duration-100 font-bold font-pop cursor-pointer' onClick={() => setShowMore(!showMore)}>Read more</div>
+            <div className='text-blue opacity-25 hover:opacity-100 duration-100 font-bold font-pop cursor-pointer' onClick={(e) => { setShowMore(!showMore); e.preventDefault() }}>Read more</div>
         </div>
         <div className='flex justify-between w-full  items-center'>
             <h3 className='font-bold font-pop text-green text-xl'>{price}</h3>
@@ -42,9 +43,12 @@ export default ({ description, featured = false, id, image, price, title, locati
                 className='font-light'
                 icon='Share'
                 variant='secondary'
-                onClick={() => { }}
+                onClick={() => {
+                    onShare(title, slug)
+
+                }}
                 text={`₦${bounty}/share`}
             />
         </div>
-    </div>
+    </div></a>
 }

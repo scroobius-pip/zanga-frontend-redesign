@@ -18,7 +18,7 @@ interface Props {
 }
 
 
-const Page = ({ property: { images, title, bounty, city, costType, costValue, owner, state, id, remainingExpense, description }, user }: Props) => {
+const Page = ({ property: { images, title, bounty, city, costType, costValue, owner, state, id, remainingExpense, description, slug }, user }: Props) => {
 
     const [photoIndex, setPhotoIndex] = useState(0)
     const [lightBoxIsOpen, setLightBoxIsOpen] = useState(false)
@@ -49,7 +49,7 @@ const Page = ({ property: { images, title, bounty, city, costType, costValue, ow
             <ShareLinkModal
                 close={() => setShareLinkModalVisible(false)}
                 title={title}
-                url={`localhost:3000?ref=${user?.id}`}
+                url={`myzanga.com/property/${slug}?ref=${user?.id}`}
                 visible={shareLinkModalVisible}
             />
             <Card className='my-10 max-w-6xl m-auto' noShadow>
@@ -160,14 +160,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
                 city: property.city,
                 title: property.title,
                 visits: property.visits,
-                featured: false
+                featured: property.featured
                 // featured:result.
             },
             session,
             user: session ? await (async (): Promise<User> => {
                 const { me: { id, name } } = await sdk.me()
                 return {
-                    name,
+                    name: session.user.name,
                     id,
                     image: session.user.image
                 }

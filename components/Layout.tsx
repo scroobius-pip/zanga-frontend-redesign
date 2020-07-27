@@ -5,6 +5,7 @@ import { ModalProvider, useModal } from 'react-modal-hook'
 import LoginModal from './Modals/LoginModal'
 import { useSession } from 'next-auth/client'
 import Page from '../pages/add-property'
+import { User } from '../types'
 
 
 interface Props {

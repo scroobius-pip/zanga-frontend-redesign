@@ -8,7 +8,7 @@ import DashboardPropertyCard from '../DashboardPropertyCard'
 import { AssignBountyModal, TopupBalanceModal } from '../Modals'
 import InfoBar from '../InfoBar'
 
-export default () => {
+export default (session: Session) => {
     const [bountyVisible, setBountyVisible] = useState(false)
     const [topupVisible, setTopupVisible] = useState(false)
 

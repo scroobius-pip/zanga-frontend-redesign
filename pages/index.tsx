@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import PropertyFilter from '../components/PropertyFilter'
 import Card from '../components/Card'
@@ -8,22 +8,23 @@ import WithSession from '../components/WithSession'
 import { GraphQLClient } from 'graphql-request'
 import { getSdk, CostType } from '../generated/graphql'
 import { GetStaticProps } from 'next'
+import { getSession, useSession } from 'next-auth/client'
 
-import { useSession } from 'next-auth/client'
 import getZangaSdk from '../functions/getZangaSdk'
 
 interface Props {
   featured: FeaturedProps['properties']
+
 }
 
 const Page = ({ featured }: Props) => {
+
   const [session, loading] = useSession()
 
 
 
-
   return (
-    <Layout session={session}>
+    <Layout user={{ id: '', image: session?.user.image, name: session?.user.name }}>
       <div >
         <div className=' bg-cover mb-15 bg-no-repeat px-5 py-10' style={{ backgroundImage: 'linear-gradient(#23436182, #23436182), url(https://ik.imagekit.io/myzanga/property_o444TeODtMI.jpg)' }}>
           <h2 className='font-pop text-center font-medium text-4xl text-white py-10'>Find your ideal home</h2>
@@ -110,8 +111,9 @@ const Page = ({ featured }: Props) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
- 
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
+  const sdk = getZangaSdk()
+
 
   const { properties = [] } = (await getZangaSdk().featuredProperties())?.featuredProperties
 
@@ -130,6 +132,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 
 }
+
 
 
 export default (Page)
