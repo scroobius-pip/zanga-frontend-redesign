@@ -1,0 +1,6 @@
+mutation incrementPropertyView($referrerId:ID,$propertyId:ID!) {
+  incrementPropertyView(input:{
+    referrerId:$referrerId,
+    propertyId:$propertyId
+  })
+}

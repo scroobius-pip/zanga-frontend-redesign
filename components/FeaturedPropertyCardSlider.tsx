@@ -2,7 +2,7 @@ import React from 'react'
 import Slider from 'react-styled-carousel-am'
 import FeaturedPropertyCard, { Props as FeaturedProperty } from './FeaturedPropertyCard'
 
-interface Props {
+export interface Props {
     properties: FeaturedProperty[]
 }
 

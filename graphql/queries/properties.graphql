@@ -1,0 +1,11 @@
+query properties($input:PropertiesInput!) {
+ properties(input:$input){
+  properties{
+      ...PropertyDetails
+  }
+  pageInfo{
+    hasNextPage
+    hasPreviousPage
+  }
+}
+}

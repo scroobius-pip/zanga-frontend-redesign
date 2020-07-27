@@ -2,17 +2,17 @@ import React from 'react'
 import Button from './Button'
 
 export interface Props {
-    id: string
     title: string
+    slug: string
     image: string
     price: string
     description: string
 }
 
-export default ({ title, price, description, image }: Props) => {
-    return <a href='/property/d' className='min-h-full overflow-hidden shadow-lg w-full group text-center'>
+export default ({ title, price, description, image, slug }: Props) => {
+    return <a href={'/property/' + slug} className='min-h-full overflow-hidden shadow-lg w-full group text-center'>
         <div className='duration-100 opacity-75 hover:opacity-100 relative '>
-            <a href='/property/d'>
+            <a href={'/property/' + slug}>
                 <Button
                     className='absolute right-0 bottom-0 opacity-0 group-hover:opacity-100 duration-200'
                     variant='secondary'

@@ -23,7 +23,7 @@ const options = {
     },
     callbacks: {
         async session(session, token) {
-            const user = { email: token.user.email }
+            const user = { email: token.user.email, name: token.user.name }
             const jwtToken = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1000d' })
 
             return Promise.resolve({ ...session, user: { ...session.user, }, token: jwtToken })

@@ -9,19 +9,20 @@ import Page from '../pages/add-property'
 
 interface Props {
     children: React.ReactElement
-    session: Session
+    // session: Session
+    user?: User
 }
 
-export default ({ children, session }: Props) => {
+export default ({ children, user }: Props) => {
 
     // const [session, loading] = useSession()
     useEffect(() => {
-        console.log(session)
+        console.log(user)
     }, [])
 
     return <div className='bg-grey-light flex flex-col h-screen justify-between '>
 
-        <Navbar image={session?.user?.image} userName={session?.user?.name} />
+        <Navbar image={user?.image} userName={user?.name} />
         <main className='mb-auto bg-grey-light'>{children}</main>
         <Footer />
 

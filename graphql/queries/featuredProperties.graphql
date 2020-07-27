@@ -1,0 +1,8 @@
+# Write your query or mutation here
+query featuredProperties {
+  featuredProperties{
+    properties{
+...PropertyDetails
+    }
+  }
+}

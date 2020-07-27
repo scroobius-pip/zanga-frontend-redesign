@@ -7,7 +7,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "storybook": "start-storybook -p 6006 -c .storybook"
+    "storybook": "start-storybook -p 6006 -c .storybook",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "repository": {
     "type": "git",
@@ -22,16 +23,21 @@
   "homepage": "https://github.com/rainiera/ts-nextjs-tailwindcss-storybook-starter#readme",
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
+    "@graphql-codegen/typescript": "^1.17.4",
     "@storybook/cli": "^5.3.19",
+    "@types/cookie": "^0.4.0",
     "@types/react-modal": "^3.10.6",
     "autoprefixer": "^9.8.4",
     "babel-loader": "^8.1.0",
+    "graphql": "^15.3.0",
+    "graphql-request": "^2.0.0",
     "isomorphic-unfetch": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "mem": "^6.1.0",
     "next": "^9.4.4",
     "next-auth": "^2.2.0",
     "next-images": "^1.4.0",
+    "nookies": "^2.3.2",
     "os-locale": "^5.0.0",
     "postcss-import": "^12.0.1",
     "react": "^16.13.1",
@@ -50,6 +56,11 @@
     "yargs": "^15.3.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.17.4",
+    "@graphql-codegen/typescript-graphql-files-modules": "1.17.4",
+    "@graphql-codegen/typescript-graphql-request": "^1.17.4",
+    "@graphql-codegen/typescript-operations": "1.17.4",
+    "@graphql-codegen/typescript-react-apollo": "1.17.4",
     "@storybook/addon-knobs": "^5.3.19",
     "@storybook/addon-viewport": "^5.3.19",
     "@storybook/preset-typescript": "^3.0.0",
@@ -57,6 +68,7 @@
     "@types/node": "^14.0.22",
     "@types/react": "^16.9.42",
     "babel-preset-react-app": "^9.1.2",
+    "graphql-codegen-apollo-next-ssr": "^0.0.14",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",
     "tailwindcss": "^1.5.2",

@@ -1,0 +1,22 @@
+fragment PropertyDetails on Property {
+         id
+      bounty
+      expense
+      remainingExpense
+      title
+      visits
+      state
+      city
+      costValue
+      costType
+      owner {
+        name
+        phone
+      }
+      images {
+        url
+        previewUrl
+      }
+      description
+      slug 
+}
