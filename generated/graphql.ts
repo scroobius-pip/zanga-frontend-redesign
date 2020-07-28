@@ -51,6 +51,7 @@ export type User = {
   phone?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   type: UserType;
+  balance: Scalars['Float'];
 };
 
 export enum UserType {
@@ -279,8 +280,25 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me?: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'email' | 'type' | 'name'>
+    & Pick<User, 'id' | 'email' | 'type' | 'name' | 'balance'>
   )> }
+);
+
+export type PostedPropertiesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PostedPropertiesQuery = (
+  { __typename?: 'Query' }
+  & { postedProperties: (
+    { __typename?: 'PropertyPage' }
+    & { properties?: Maybe<Array<(
+      { __typename?: 'Property' }
+      & PropertyDetailsFragment
+    )>>, pageInfo: (
+      { __typename?: 'PageInfo' }
+      & Pick<PageInfo, 'after' | 'before'>
+    ) }
+  ) }
 );
 
 export type PropertiesQueryVariables = Exact<{
@@ -313,6 +331,23 @@ export type PropertyQuery = (
     { __typename?: 'Property' }
     & PropertyDetailsFragment
   )> }
+);
+
+export type SharedPropertiesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SharedPropertiesQuery = (
+  { __typename?: 'Query' }
+  & { sharedProperties: (
+    { __typename?: 'PropertyPointPage' }
+    & { pageInfo: (
+      { __typename?: 'PageInfo' }
+      & Pick<PageInfo, 'after' | 'before'>
+    ), points?: Maybe<Array<(
+      { __typename?: 'PropertyPoint' }
+      & Pick<PropertyPoint, 'propertySlug' | 'propertyTitle' | 'impressions' | 'profit'>
+    )>> }
+  ) }
 );
 
 export type UpdateUserMutationVariables = Exact<{
@@ -381,9 +416,23 @@ export const MeDocument = gql`
     email
     type
     name
+    balance
   }
 }
     `;
+export const PostedPropertiesDocument = gql`
+    query postedProperties {
+  postedProperties {
+    properties {
+      ...PropertyDetails
+    }
+    pageInfo {
+      after
+      before
+    }
+  }
+}
+    ${PropertyDetailsFragmentDoc}`;
 export const PropertiesDocument = gql`
     query properties($input: PropertiesInput!) {
   properties(input: $input) {
@@ -404,6 +453,22 @@ export const PropertyDocument = gql`
   }
 }
     ${PropertyDetailsFragmentDoc}`;
+export const SharedPropertiesDocument = gql`
+    query sharedProperties {
+  sharedProperties {
+    pageInfo {
+      after
+      before
+    }
+    points {
+      propertySlug
+      propertyTitle
+      impressions
+      profit
+    }
+  }
+}
+    `;
 export const UpdateUserDocument = gql`
     mutation updateUser($input: UserInput!) {
   updateUser(input: $input)
@@ -431,11 +496,17 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     me(variables?: MeQueryVariables): Promise<MeQuery> {
       return withWrapper(() => client.request<MeQuery>(print(MeDocument), variables));
     },
+    postedProperties(variables?: PostedPropertiesQueryVariables): Promise<PostedPropertiesQuery> {
+      return withWrapper(() => client.request<PostedPropertiesQuery>(print(PostedPropertiesDocument), variables));
+    },
     properties(variables: PropertiesQueryVariables): Promise<PropertiesQuery> {
       return withWrapper(() => client.request<PropertiesQuery>(print(PropertiesDocument), variables));
     },
     property(variables: PropertyQueryVariables): Promise<PropertyQuery> {
       return withWrapper(() => client.request<PropertyQuery>(print(PropertyDocument), variables));
+    },
+    sharedProperties(variables?: SharedPropertiesQueryVariables): Promise<SharedPropertiesQuery> {
+      return withWrapper(() => client.request<SharedPropertiesQuery>(print(SharedPropertiesDocument), variables));
     },
     updateUser(variables: UpdateUserMutationVariables): Promise<UpdateUserMutation> {
       return withWrapper(() => client.request<UpdateUserMutation>(print(UpdateUserDocument), variables));

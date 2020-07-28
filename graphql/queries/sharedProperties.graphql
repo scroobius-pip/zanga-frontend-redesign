@@ -1,0 +1,15 @@
+query sharedProperties{
+  sharedProperties{
+    pageInfo{
+      after
+      before
+    }
+    points{
+      propertySlug
+      propertyTitle
+      impressions
+      profit
+      
+    }
+  }
+}

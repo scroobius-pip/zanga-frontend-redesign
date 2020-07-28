@@ -1,0 +1,12 @@
+query postedProperties{
+  postedProperties {
+    properties{
+...PropertyDetails
+      
+    }
+       pageInfo{
+      after
+      before
+    }
+  }
+}

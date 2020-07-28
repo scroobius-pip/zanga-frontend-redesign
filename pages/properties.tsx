@@ -14,6 +14,7 @@ import EmptyState from '../components/EmptyState'
 import { useRouter } from 'next/router'
 import sortProperties, { PropertySortOptions } from '../functions/sortProperties'
 import { User, Property, Session } from '../types'
+import formatCurrency from '../functions/formatCurrency'
 
 
 interface Props {
@@ -101,7 +102,7 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
                                 location={`${property.city},${property.state}`}
                                 title={property.title}
                                 key={property.id}
-                                price={`${property.costType} @ ${property.costType === CostType.Rent ? `₦${property.costValue}/yr` : `₦${property.costValue}`}`}
+                                price={`${property.costType} @ ${property.costType === CostType.Rent ? `${formatCurrency(property.costValue, true)}/yr` : `₦${property.costValue}`}`}
                             />
                         })}
 

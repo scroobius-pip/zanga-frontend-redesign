@@ -24,7 +24,7 @@ export default ({ onChange, disabled, label, options, initialValue, name = '', v
             {label}
         </label>
         }
-        <div className='relative duration-150 '>
+        <div className='relative opacity-75 hover:opacity-100 duration-150 '>
 
             <select
                 name={name}

@@ -24,7 +24,7 @@ export default (props: Props) => {
                     <a href='/dashboard'>
                         <li className='py-5 px-10 hover:bg-blue  text-center duration-150 hover:text-white  font-pop'>Dashboard</li>
                     </a>
-                    <a href='#' onClick={signout}>
+                    <a href='#' onClick={() => signout({ callbackUrl: 'http://localhost:3000/' })}>
                         <li className='py-5 px-10 hover:bg-blue  text-center   duration-150 hover:text-white  font-pop'>Logout</li>
                     </a>
                 </ol>

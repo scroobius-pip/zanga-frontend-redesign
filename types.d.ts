@@ -5,6 +5,7 @@ interface User {
     image: string
     id: string
     type: UserType
+    balance?: number
 }
 
 

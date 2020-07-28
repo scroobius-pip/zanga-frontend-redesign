@@ -8,6 +8,3 @@ generates:
       - "typescript-operations"
       - "typescript-graphql-request"
       
-    config:
-      withHooks: true
-      

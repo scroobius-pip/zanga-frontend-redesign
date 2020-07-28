@@ -22,7 +22,7 @@ export default ({ description, slug, featured = false, id, image, price, title, 
         </div>
         <div className='flex sm:flex-row flex-col mb-5'>
             <div className='w-full mb-5 sm:pr-5 sm:w-2/5'>
-                <img src={image} />
+                <img className='w-full h-full' src={image} />
             </div>
             <div>
                 <h4 className='text-blue font-bold text-lg font-pop mb-2'>{title}</h4>
@@ -34,7 +34,7 @@ export default ({ description, slug, featured = false, id, image, price, title, 
         </div>
         <div className='mb-5'>
             <p className={'text-blue duration-150 font-pop mb-2 ' + (!showMore ? 'truncate' : '')}>{description}</p>
-            <div className='text-blue opacity-25 hover:opacity-100 duration-100 font-bold font-pop cursor-pointer' onClick={(e) => { setShowMore(!showMore); e.preventDefault() }}>Read more</div>
+            <div className='text-blue opacity-25 hover:opacity-100 duration-100 font-bold font-pop cursor-pointer' onClick={(e) => { setShowMore(!showMore); e.preventDefault() }}>Read {showMore ? 'less' : 'more'}</div>
         </div>
         <div className='flex justify-between w-full  items-center'>
             <h3 className='font-bold font-pop text-green text-xl'>{price}</h3>
