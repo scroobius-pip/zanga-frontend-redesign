@@ -13,6 +13,8 @@ import { getSession } from 'next-auth/client'
 import { Image, CostType } from '../generated/graphql'
 import ImageKit from 'imagekit-javascript'
 import { useRouter } from 'next/router'
+import InfoBar from '../components/InfoBar'
+import { ErrorMessage } from '../components/ErrorMessage'
 
 
 interface Props {
@@ -89,8 +91,9 @@ const Page = ({ user, token }: Props) => {
             if (!createProperty?.length) {
                 throw 'Unable to upload'
             }
+            // router.replace('/dashboard')
+            window.location.replace('/dashboard')
             setLoading(false)
-            router.replace('/dashboard')
         } catch (error) {
             console.log(error)
             setLoading(false)
@@ -166,6 +169,11 @@ const Page = ({ user, token }: Props) => {
                     </div>
                     <div className='mt-5'>
                         <label className='font-text block  font-pop text-blue mb-2'>Images</label>
+                        <InfoBar
+                            icon='Info'
+                            text='First image chosen will be the main display image.'
+                            className='text-blue font-semibold opacity-75 mb-5'
+                        />
                         <ImageSelect
                             onChange={images => {
                                 setImagesFiles(images.map(i => i.file))
@@ -207,12 +215,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
             token: session?.token ?? ''
         }
     }
-}
-
-const ErrorMessage = ({ text = '', show = false }) => {
-    if (!show) return null
-
-    return <div className='font-pop text-red text-sm text-right'>{text}</div>
 }
 
 function capitalizeFirstLetter(string: string) {

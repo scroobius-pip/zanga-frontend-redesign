@@ -248,6 +248,16 @@ export type CreatePropertyMutation = (
   & Pick<Mutation, 'createProperty'>
 );
 
+export type DeletePropertyMutationVariables = Exact<{
+  propertyId: Scalars['ID'];
+}>;
+
+
+export type DeletePropertyMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteProperty'>
+);
+
 export type IncrementPropertyViewMutationVariables = Exact<{
   referrerId?: Maybe<Scalars['ID']>;
   propertyId: Scalars['ID'];
@@ -395,6 +405,11 @@ export const CreatePropertyDocument = gql`
   createProperty(input: $input)
 }
     `;
+export const DeletePropertyDocument = gql`
+    mutation deleteProperty($propertyId: ID!) {
+  deleteProperty(id: $propertyId)
+}
+    `;
 export const IncrementPropertyViewDocument = gql`
     mutation incrementPropertyView($referrerId: ID, $propertyId: ID!) {
   incrementPropertyView(input: {referrerId: $referrerId, propertyId: $propertyId})
@@ -486,6 +501,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     createProperty(variables: CreatePropertyMutationVariables): Promise<CreatePropertyMutation> {
       return withWrapper(() => client.request<CreatePropertyMutation>(print(CreatePropertyDocument), variables));
+    },
+    deleteProperty(variables: DeletePropertyMutationVariables): Promise<DeletePropertyMutation> {
+      return withWrapper(() => client.request<DeletePropertyMutation>(print(DeletePropertyDocument), variables));
     },
     incrementPropertyView(variables: IncrementPropertyViewMutationVariables): Promise<IncrementPropertyViewMutation> {
       return withWrapper(() => client.request<IncrementPropertyViewMutation>(print(IncrementPropertyViewDocument), variables));

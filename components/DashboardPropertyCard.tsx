@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, forwardRef } from 'react'
 import Icons from '../icons'
 import Button from './Button'
 
@@ -12,12 +12,14 @@ export interface DashboardProperty {
     slug: string
     location: string
     bounty: number
+    ref?: any
 }
+type Props = DashboardProperty & { setBounty: () => any, deleteProperty: () => any }
 
-export default ({ description, featured = false, id, slug, image, price, title, location, bounty, setBounty }: DashboardProperty & { setBounty: () => any }) => {
+const Card = ({ description, featured = false, id, slug, image, price, title, location, bounty, setBounty, deleteProperty, ref }: Props) => {
     const [showMore, setShowMore] = useState(false)
 
-    return <a href={`/property/${slug}`}>
+    return <a href={`/property/${slug}`} ref={ref}>
 
         <div className={'p-5 shadow-xl hover:shadow-md duration-700 mb-1 w-ful bg-white border-2 hover:border-opacity-100 border-opacity-0 border-solid ' + (!featured ? 'border-blue' : 'border-orange')}>
             <div className='w-full flex justify-end mb-2'>
@@ -58,6 +60,14 @@ export default ({ description, featured = false, id, slug, image, price, title, 
                     text={`₦${bounty}/share`}
                 />
             </div>
+            <div>
+                <span onClick={e => {
+                    deleteProperty()
+                    e.preventDefault()
+                }} className='font-pop text-red font-bold text-sm opacity-75 hover:opacity-100'>Delete</span>
+            </div>
         </div>
     </a>
 }
+
+export default forwardRef((props: Props, ref) => <Card  {...props} ref={ref} />)

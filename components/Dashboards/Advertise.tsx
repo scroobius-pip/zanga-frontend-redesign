@@ -11,23 +11,54 @@ import getZangaSdk from '../../functions/getZangaSdk'
 import { User, Property } from '../../types'
 import EmptyState from '../EmptyState'
 import formatCurrency from '../../functions/formatCurrency'
+import FlipMove from 'react-flip-move';
 
 
-export default ({ token, user, postedProperties }: { token: string, user: User, postedProperties: Property[] }) => {
-    const [bountyVisible, setBountyVisible] = useState(false)
+export default ({ token, user, postedProperties: initialPostedProperties }: { token: string, user: User, postedProperties: Property[] }) => {
+    const [postedProperties, setPostedProperties] = useState(initialPostedProperties)
+    const [propertyIdDeleteLoading, setPropertyIdDeleteLoading] = useState('')
+    const [bountyVisible, setBountyVisible] = useState<{ visible: boolean, propertyId: string, title: string }>({
+        visible: false,
+        propertyId: null,
+        title: null
+    })
     const [topupVisible, setTopupVisible] = useState(false)
 
     // const sdk = getZangaSdk(token)
+
+    const onDeleteProperty = async (propertyId: string) => {
+
+        try {
+            setPropertyIdDeleteLoading(propertyId)
+            const sdk = getZangaSdk(token)
+            const result = (await sdk.deleteProperty({ propertyId })).deleteProperty
+            if (result) {
+                setPostedProperties(postedProperties.filter(p => p.id !== propertyId))
+            }
+        } catch (error) {
+            console.error(error)
+            throw error
+        } finally {
+
+            setPropertyIdDeleteLoading('')
+        }
+
+    }
 
 
     return <>
         <div className='max-w-6xl m-auto my-10'>
             <AssignBountyModal
-                visible={bountyVisible}
-                close={() => setBountyVisible(false)}
+                token={token}
+                balance={user?.balance ?? 0}
+                propertyId={bountyVisible.propertyId}
+                title={bountyVisible.title}
+                visible={bountyVisible.visible}
+                close={() => setBountyVisible({ ...bountyVisible, visible: false })}
             />
             <TopupBalanceModal
                 visible={topupVisible}
+
                 close={() => setTopupVisible(false)}
             />
             <h4 className='font-pop text-blue font-medium'>Welcome {user.name}!</h4>
@@ -69,7 +100,7 @@ export default ({ token, user, postedProperties }: { token: string, user: User, 
                 </Card>
             </div>
             <div>
-                <h3 className='font-bold text-blue mt-16 font-pop text-3xl'>Properties (3)</h3>
+                <h3 className='font-bold text-blue mt-16 font-pop text-3xl'>Properties ({postedProperties.length})</h3>
                 <a href='/add-property'>
                     <Button
                         variant={'primary'}
@@ -81,22 +112,28 @@ export default ({ token, user, postedProperties }: { token: string, user: User, 
                     />
                 </a>
                 {postedProperties.length ? <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6'>
-                    {
-                        postedProperties.map(p => <DashboardPropertyCard
-                            setBounty={() => setBountyVisible(true)}
-                            bounty={p.bounty}
-                            description={p.description}
-                            featured={p.featured}
-                            id={p.id}
-                            slug={p.slug}
-                            key={p.id}
-                            image={p.images[0].previewUrl}
-                            location={`${p.city},${p.state}`}
-                            price={''}
+                    <FlipMove enterAnimation="fade" staggerDurationBy={20} leaveAnimation="fade" typeName={null}>
 
-                            title={p.title}
-                        />)
-                    }
+                        {
+                            postedProperties.map(p => <div key={p.id} className={`${propertyIdDeleteLoading === p.id && 'opacity-50'}`}>
+                                <DashboardPropertyCard
+                                    deleteProperty={() => onDeleteProperty(p.id)}
+                                    setBounty={() => setBountyVisible({ ...bountyVisible, title: p.title, propertyId: p.id, visible: true })}
+                                    bounty={p.bounty}
+                                    description={p.description}
+                                    featured={p.featured}
+                                    id={p.id}
+                                    slug={p.slug}
+
+                                    image={p.images[0].previewUrl}
+                                    location={`${p.city},${p.state}`}
+                                    price={''}
+
+                                    title={p.title}
+                                />
+                            </div>)
+                        }
+                    </FlipMove>
 
                 </div> :
                     <EmptyState
@@ -111,16 +148,16 @@ export default ({ token, user, postedProperties }: { token: string, user: User, 
 
                 <h3 className='font-bold text-blue mt-16 font-pop text-3xl'>Cost Breakdown</h3>
                 <div className='mt-6'>
-                    <table className="table-fixed mb-5 ">
+                    {postedProperties.length ? <table className="table-fixed mb-5 ">
                         <thead className=''>
                             <tr>
                                 <th className="w-1/2 text-left py-2">Title</th>
-                                <th className="w-1/4 text-left py-2">Shares</th>
+                                <th className="w-1/4 text-left py-2">Visits</th>
                                 <th className="w-1/4 text-left py-2">Cost</th>
                                 {/* <th className="w-1/4 text-left py-2">Remaining</th> */}
                             </tr>
                         </thead>
-                        {postedProperties.length ? <tbody>
+                        <tbody>
                             {postedProperties.map(p => <BreakdownItem
                                 cost={p.expense}
                                 remaining={p.remainingExpense}
@@ -129,10 +166,11 @@ export default ({ token, user, postedProperties }: { token: string, user: User, 
                                 title={p.title}
                                 key={p.id}
                             />)}
-                        </tbody> : <EmptyState
-                                text="No shares yet, create a property and start a bounty."
-                            />}
-                    </table>
+                        </tbody>
+                    </table> :
+                        <EmptyState
+                            text="No shares yet, create a property and start a bounty."
+                        />}
                     {/* <div className='flex justify-end'>
                         <Pagination currentPage={1} onChange={() => { }} pageSize={5} totalCount={16} />
 

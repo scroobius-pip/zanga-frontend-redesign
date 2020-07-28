@@ -83,7 +83,7 @@ export default ({ token, user, breakdown }: { token: string, user: User, breakdo
 
                     </table> :
                         <EmptyState
-                            text="No earnings yet, once you start earning your breakdown will show."
+                            text="No earnings yet, once you start earning your breakdown will be shown here."
                         />}
                     {/* <div className='flex justify-end'>
                         <Pagination currentPage={1} onChange={() => { }} pageSize={5} totalCount={16} />
