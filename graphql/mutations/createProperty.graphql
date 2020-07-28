@@ -1,0 +1,3 @@
+mutation createProperty($input:CreatePropertyInput!) {
+  createProperty(input:$input)
+}

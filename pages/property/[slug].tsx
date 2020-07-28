@@ -77,7 +77,7 @@ const Page = ({ property: { images, title, bounty, city, costType, costValue, ow
                         <h3 className='font-pop text-xl text-blue'>{costType} @ {costType === CostType.Rent ? `₦${costValue}/yr` : `₦${costValue}`}</h3>
                     </div>
                     <div className='mt-5'>
-                        <div className=' bg-cover relative bg-fixed  bg-no-repeat -mx-10 h-64' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${images[0].url})`, height: 500 }}>
+                        <div className=' bg-cover relative   bg-no-repeat -mx-10 h-64' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${images[0].url})`, height: 500 }}>
                             <div
                                 style={{ bottom: '2.5rem', right: '2.5rem' }}
                                 className='absolute'
@@ -95,11 +95,12 @@ const Page = ({ property: { images, title, bounty, city, costType, costValue, ow
 
                     </div>
                     <div className='mt-5'>
-                        <h4 className='font-pop text-xl font-bold font-blue'>Description</h4>
-                        <p className='font-pop'>
-                            <PropertyDescription
+                        <h4 className='font-pop text-xl font-bold text-blue'>Description</h4>
+                        <p className='font-pop whitespace-pre-wrap text-blue mt-5'>
+                            {/* <PropertyDescription
                                 description={description}
-                            />
+                            /> */}
+                            {description}
                         </p>
                     </div>
                     <div style={{ maxWidth: '15rem' }} className=' ml-auto mt-10'>

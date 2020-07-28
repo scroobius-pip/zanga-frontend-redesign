@@ -88,21 +88,26 @@ const Page = ({ featured }: Props) => {
         </div>
         <section className='max-w-screen-sm mt-20 m-auto mb-48'>
 
-          <h3 className='text-center font-bold font-pop text-blue text-3xl'>Featured Property</h3>
-          <p className='text-center  font-pop text-blue text-base '>Trusted and beautiful properties in Nigeria</p>
-          <FeaturedPropertyCardSlider properties={featured} />
-          <div className='flex sm:justify-end justify-center'>
 
-            <a href='/properties?type=Rent&state=Abuja'>
-              <Button
-                className='text-right'
-                text='More Properties'
-                onClick={() => { }}
-                icon='Right'
-                variant='secondary'
-              />
-            </a>
-          </div>
+          {!!featured.length && <>
+            <h3 className='text-center font-bold font-pop text-blue text-3xl'>Featured Property</h3>
+            <p className='text-center  font-pop text-blue text-base '>Trusted and beautiful properties in Nigeria</p>
+            <FeaturedPropertyCardSlider properties={featured} />
+            <div className='flex sm:justify-end justify-center'>
+
+              <a href='/properties?type=Rent&state=Abuja'>
+                <Button
+
+                  className='text-right'
+                  text='More Properties'
+                  onClick={() => { }}
+                  icon='Right'
+                  variant='secondary'
+                />
+              </a>
+            </div>
+          </>
+          }
         </section>
       </div>
 

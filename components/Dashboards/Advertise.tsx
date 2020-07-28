@@ -8,7 +8,8 @@ import DashboardPropertyCard from '../DashboardPropertyCard'
 import { AssignBountyModal, TopupBalanceModal } from '../Modals'
 import InfoBar from '../InfoBar'
 
-export default (session: Session) => {
+
+export default ({ token }: { token: string }) => {
     const [bountyVisible, setBountyVisible] = useState(false)
     const [topupVisible, setTopupVisible] = useState(false)
 
@@ -66,6 +67,7 @@ export default (session: Session) => {
                     <Button
                         variant={'primary'}
                         icon='Add'
+                        preventDefault={false}
                         text='Create Property'
                         onClick={() => { }}
 

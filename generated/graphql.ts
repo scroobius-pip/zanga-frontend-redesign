@@ -227,6 +227,26 @@ export type PropertyDetailsFragment = (
   )>> }
 );
 
+export type AssignBountyMutationVariables = Exact<{
+  input: BountyInput;
+}>;
+
+
+export type AssignBountyMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'assignBounty'>
+);
+
+export type CreatePropertyMutationVariables = Exact<{
+  input: CreatePropertyInput;
+}>;
+
+
+export type CreatePropertyMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'createProperty'>
+);
+
 export type IncrementPropertyViewMutationVariables = Exact<{
   referrerId?: Maybe<Scalars['ID']>;
   propertyId: Scalars['ID'];
@@ -330,6 +350,16 @@ export const PropertyDetailsFragmentDoc = gql`
   slug
 }
     `;
+export const AssignBountyDocument = gql`
+    mutation assignBounty($input: BountyInput!) {
+  assignBounty(input: $input)
+}
+    `;
+export const CreatePropertyDocument = gql`
+    mutation createProperty($input: CreatePropertyInput!) {
+  createProperty(input: $input)
+}
+    `;
 export const IncrementPropertyViewDocument = gql`
     mutation incrementPropertyView($referrerId: ID, $propertyId: ID!) {
   incrementPropertyView(input: {referrerId: $referrerId, propertyId: $propertyId})
@@ -386,6 +416,12 @@ export type SdkFunctionWrapper = <T>(action: () => Promise<T>) => Promise<T>;
 const defaultWrapper: SdkFunctionWrapper = sdkFunction => sdkFunction();
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    assignBounty(variables: AssignBountyMutationVariables): Promise<AssignBountyMutation> {
+      return withWrapper(() => client.request<AssignBountyMutation>(print(AssignBountyDocument), variables));
+    },
+    createProperty(variables: CreatePropertyMutationVariables): Promise<CreatePropertyMutation> {
+      return withWrapper(() => client.request<CreatePropertyMutation>(print(CreatePropertyDocument), variables));
+    },
     incrementPropertyView(variables: IncrementPropertyViewMutationVariables): Promise<IncrementPropertyViewMutation> {
       return withWrapper(() => client.request<IncrementPropertyViewMutation>(print(IncrementPropertyViewDocument), variables));
     },

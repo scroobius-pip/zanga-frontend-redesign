@@ -105,7 +105,7 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
                             />
                         })}
 
-                    </div> : <EmptyState className='mt-10' text='Your search did not match any properties.' />
+                    </div> : <div className='mb-48'><EmptyState className='mt-10' text='Your search did not match any properties.' /></div>
                     }
 
                 </div>

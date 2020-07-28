@@ -1,0 +1,3 @@
+mutation assignBounty($input:BountyInput!) {
+  assignBounty(input:$input)
+}

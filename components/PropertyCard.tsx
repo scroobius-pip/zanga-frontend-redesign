@@ -40,6 +40,7 @@ export default ({ description, slug, featured = false, id, image, price, title, 
             <h3 className='font-bold font-pop text-green text-xl'>{price}</h3>
             {/* <ShareButton /> */}
             <Button
+                disabled={bounty < 1}
                 className='font-light'
                 icon='Share'
                 variant='secondary'

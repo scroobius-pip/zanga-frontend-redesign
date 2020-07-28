@@ -28,7 +28,7 @@ const Page = ({ user, token }: Props) => {
 
 
 
-    return <Layout user={{ id: user?.id, name: user?.name, image: user?.image, type: user?.type }}>
+    return <Layout user={user}>
         {
             user?.type === UserType.Unassigned ?
                 <div className='max-w-lg mt-16 m-auto'>
@@ -59,7 +59,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
                     type
                 }
             })() : null,
-            token: session?.token
+            token: session?.token ?? ''
         }
     }
 }

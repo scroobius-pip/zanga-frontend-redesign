@@ -34,7 +34,7 @@ export default (props: Props) => {
         }}
         multiple
         maxNumber={10}
-        acceptType={['jpg', 'png', 'jpeg']}
+        acceptType={['jpg', 'png', 'jpeg', 'webp']}
         maxFileSize={5 * 1024 * 1024}
     >
         {
