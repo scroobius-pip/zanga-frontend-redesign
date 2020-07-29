@@ -11,6 +11,7 @@ import getZangaSdk from '../../functions/getZangaSdk'
 import { CostType } from '../../generated/graphql'
 import { getSession } from 'next-auth/client'
 import { parseCookies, setCookie } from 'nookies'
+import { Property, User, Session } from '../../types'
 
 interface Props {
     property: Property
@@ -166,11 +167,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
             },
             session,
             user: session ? await (async (): Promise<User> => {
-                const { me: { id, name } } = await sdk.me()
+                const { me: { id, name, type } } = await sdk.me()
                 return {
                     name: session.user.name,
                     id,
-                    image: session.user.image
+                    image: session.user.image,
+                    type
                 }
             })() : null
         }
