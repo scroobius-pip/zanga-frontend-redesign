@@ -1,3 +1,5 @@
+import { Property } from '../types'
+
 export type PropertySortOptions = 'bounty_asc' | 'bounty_desc' | 'price_asc' | 'price_desc'
 
 type PropertySortSpec = {

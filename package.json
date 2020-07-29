@@ -77,5 +77,8 @@
     "tailwindcss": "^1.5.2",
     "typescript": "^3.9.5",
     "yarn-upgrade-all": "^0.5.2"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }

@@ -126,7 +126,7 @@ const Page = ({ property: { images, title, bounty, city, costType, costValue, ow
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const session = await getSession(context) as Session
-    const sdk = getZangaSdk(session.token)
+    const sdk = getZangaSdk(session?.token)
     const cookies = parseCookies(context)
 
     const { slug, ref } = context.query as { slug: string, ref: string }

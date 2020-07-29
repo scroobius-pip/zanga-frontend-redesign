@@ -1,0 +1,6 @@
+query getBankAccountName($accountNo:String!,$bankCode:String!){
+
+  getBankAccountName(accountNo:$accountNo,bankCode:$bankCode)
+  
+  
+}

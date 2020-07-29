@@ -1,0 +1,8 @@
+query getBanks{
+  meta{
+    banks{
+      name
+      code
+    }
+  }
+}

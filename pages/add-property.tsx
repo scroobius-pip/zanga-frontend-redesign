@@ -1,4 +1,4 @@
-import React, { useState, Props, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
 import Card from '../components/Card'
 import TextInput from '../components/TextInput'

@@ -6,7 +6,7 @@ import Button from '../components/Button'
 import FeaturedPropertyCardSlider, { Props as FeaturedProps } from '../components/FeaturedPropertyCardSlider'
 import WithSession from '../components/WithSession'
 import { GraphQLClient } from 'graphql-request'
-import { getSdk, CostType } from '../generated/graphql'
+import { getSdk, CostType, UserType } from '../generated/graphql'
 import { GetStaticProps } from 'next'
 import { getSession, useSession } from 'next-auth/client'
 
@@ -24,7 +24,7 @@ const Page = ({ featured }: Props) => {
 
 
   return (
-    <Layout user={{ id: '', image: session?.user.image, name: session?.user.name }}>
+    <Layout user={{ id: '', image: session?.user.image, name: session?.user.name, type: UserType.Unassigned }}>
       <div >
         <div className=' bg-cover mb-15 bg-no-repeat px-5 py-10' style={{ backgroundImage: 'linear-gradient(#23436182, #23436182), url(https://ik.imagekit.io/myzanga/property_o444TeODtMI.jpg)' }}>
           <h2 className='font-pop text-center font-medium text-4xl text-white py-10'>Find your ideal home</h2>

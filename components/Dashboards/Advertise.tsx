@@ -58,7 +58,7 @@ export default ({ token, user, postedProperties: initialPostedProperties }: { to
             />
             <TopupBalanceModal
                 visible={topupVisible}
-
+                token={token}
                 close={() => setTopupVisible(false)}
             />
             <h4 className='font-pop text-blue font-medium'>Welcome {user.name}!</h4>

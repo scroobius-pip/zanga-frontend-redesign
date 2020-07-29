@@ -8,7 +8,7 @@ export default function MyApp({ Component, pageProps }) {
 
   const { session } = pageProps
 
-  return <Provider options={{ site: process.env.SITE }} session={session}>
+  return <Provider options={{ site: 'http://localhost:3000' }} session={session}>
 
     <Component key='the-app' {...pageProps} />
     <style jsx>

@@ -22,6 +22,9 @@ export type Query = {
   properties: PropertyPage;
   property?: Maybe<Property>;
   featuredProperties: PropertyPage;
+  getPaymentLink: Scalars['String'];
+  getBankAccountName?: Maybe<Scalars['String']>;
+  meta: Meta;
 };
 
 
@@ -42,6 +45,17 @@ export type QueryPropertiesArgs = {
 
 export type QueryPropertyArgs = {
   slug: Scalars['String'];
+};
+
+
+export type QueryGetPaymentLinkArgs = {
+  input: PaymentInput;
+};
+
+
+export type QueryGetBankAccountNameArgs = {
+  accountNo: Scalars['String'];
+  bankCode: Scalars['String'];
 };
 
 export type User = {
@@ -127,6 +141,21 @@ export type PropertiesInput = {
   cursor?: Maybe<Scalars['String']>;
 };
 
+export type PaymentInput = {
+  amount: Scalars['Float'];
+};
+
+export type Meta = {
+  __typename?: 'Meta';
+  banks?: Maybe<Array<Bank>>;
+};
+
+export type Bank = {
+  __typename?: 'Bank';
+  name: Scalars['String'];
+  code: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createProperty: Scalars['ID'];
@@ -134,6 +163,7 @@ export type Mutation = {
   incrementPropertyView?: Maybe<Scalars['Boolean']>;
   updateUser: Scalars['Boolean'];
   assignBounty: Scalars['Boolean'];
+  withdrawBalance: WithdrawBalanceResult;
 };
 
 
@@ -159,6 +189,11 @@ export type MutationUpdateUserArgs = {
 
 export type MutationAssignBountyArgs = {
   input: BountyInput;
+};
+
+
+export type MutationWithdrawBalanceArgs = {
+  input: WithdrawBalanceInput;
 };
 
 export type CreatePropertyInput = {
@@ -196,6 +231,22 @@ export type BountyInput = {
   propertyId: Scalars['ID'];
   expense: Scalars['Float'];
   bounty: Scalars['Float'];
+};
+
+export type WithdrawBalanceInput = {
+  amount: Scalars['Float'];
+  actualAmount: Scalars['Float'];
+  accountNo: Scalars['String'];
+  bankCode: Scalars['String'];
+  customerName: Scalars['String'];
+};
+
+export type WithdrawBalanceResult = {
+  __typename?: 'WithdrawBalanceResult';
+  success: Scalars['Boolean'];
+  message: Scalars['String'];
+  amount: Scalars['Float'];
+  referenceId: Scalars['String'];
 };
 
 export type Owner = {
@@ -269,6 +320,19 @@ export type IncrementPropertyViewMutation = (
   & Pick<Mutation, 'incrementPropertyView'>
 );
 
+export type WithdrawBalanceMutationVariables = Exact<{
+  input: WithdrawBalanceInput;
+}>;
+
+
+export type WithdrawBalanceMutation = (
+  { __typename?: 'Mutation' }
+  & { withdrawBalance: (
+    { __typename?: 'WithdrawBalanceResult' }
+    & Pick<WithdrawBalanceResult, 'success' | 'message' | 'amount' | 'referenceId'>
+  ) }
+);
+
 export type FeaturedPropertiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -281,6 +345,41 @@ export type FeaturedPropertiesQuery = (
       & PropertyDetailsFragment
     )>> }
   ) }
+);
+
+export type GetBankAccountNameQueryVariables = Exact<{
+  accountNo: Scalars['String'];
+  bankCode: Scalars['String'];
+}>;
+
+
+export type GetBankAccountNameQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'getBankAccountName'>
+);
+
+export type GetBanksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetBanksQuery = (
+  { __typename?: 'Query' }
+  & { meta: (
+    { __typename?: 'Meta' }
+    & { banks?: Maybe<Array<(
+      { __typename?: 'Bank' }
+      & Pick<Bank, 'name' | 'code'>
+    )>> }
+  ) }
+);
+
+export type GetPaymentLinkQueryVariables = Exact<{
+  amount: Scalars['Float'];
+}>;
+
+
+export type GetPaymentLinkQuery = (
+  { __typename?: 'Query' }
+  & { link: Query['getPaymentLink'] }
 );
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
@@ -415,6 +514,16 @@ export const IncrementPropertyViewDocument = gql`
   incrementPropertyView(input: {referrerId: $referrerId, propertyId: $propertyId})
 }
     `;
+export const WithdrawBalanceDocument = gql`
+    mutation withdrawBalance($input: WithdrawBalanceInput!) {
+  withdrawBalance(input: $input) {
+    success
+    message
+    amount
+    referenceId
+  }
+}
+    `;
 export const FeaturedPropertiesDocument = gql`
     query featuredProperties {
   featuredProperties {
@@ -424,6 +533,26 @@ export const FeaturedPropertiesDocument = gql`
   }
 }
     ${PropertyDetailsFragmentDoc}`;
+export const GetBankAccountNameDocument = gql`
+    query getBankAccountName($accountNo: String!, $bankCode: String!) {
+  getBankAccountName(accountNo: $accountNo, bankCode: $bankCode)
+}
+    `;
+export const GetBanksDocument = gql`
+    query getBanks {
+  meta {
+    banks {
+      name
+      code
+    }
+  }
+}
+    `;
+export const GetPaymentLinkDocument = gql`
+    query getPaymentLink($amount: Float!) {
+  link: getPaymentLink(input: {amount: $amount})
+}
+    `;
 export const MeDocument = gql`
     query me {
   me {
@@ -508,8 +637,20 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     incrementPropertyView(variables: IncrementPropertyViewMutationVariables): Promise<IncrementPropertyViewMutation> {
       return withWrapper(() => client.request<IncrementPropertyViewMutation>(print(IncrementPropertyViewDocument), variables));
     },
+    withdrawBalance(variables: WithdrawBalanceMutationVariables): Promise<WithdrawBalanceMutation> {
+      return withWrapper(() => client.request<WithdrawBalanceMutation>(print(WithdrawBalanceDocument), variables));
+    },
     featuredProperties(variables?: FeaturedPropertiesQueryVariables): Promise<FeaturedPropertiesQuery> {
       return withWrapper(() => client.request<FeaturedPropertiesQuery>(print(FeaturedPropertiesDocument), variables));
+    },
+    getBankAccountName(variables: GetBankAccountNameQueryVariables): Promise<GetBankAccountNameQuery> {
+      return withWrapper(() => client.request<GetBankAccountNameQuery>(print(GetBankAccountNameDocument), variables));
+    },
+    getBanks(variables?: GetBanksQueryVariables): Promise<GetBanksQuery> {
+      return withWrapper(() => client.request<GetBanksQuery>(print(GetBanksDocument), variables));
+    },
+    getPaymentLink(variables: GetPaymentLinkQueryVariables): Promise<GetPaymentLinkQuery> {
+      return withWrapper(() => client.request<GetPaymentLinkQuery>(print(GetPaymentLinkDocument), variables));
     },
     me(variables?: MeQueryVariables): Promise<MeQuery> {
       return withWrapper(() => client.request<MeQuery>(print(MeDocument), variables));

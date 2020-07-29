@@ -3,10 +3,12 @@ import Layout from '../components/Layout'
 import Card from '../components/Card'
 import SocialLoginButtons from '../components/SocialLoginButtons'
 import WithSession from '../components/WithSession'
+import { Session } from '../types'
+import { UserType } from '../generated/graphql'
 
 
-const Page = ({ session }) => {
-    return <Layout session={session}>
+const Page = ({ session }: { session: Session }) => {
+    return <Layout user={{ id: '', type: UserType.Unassigned, image: session?.user.image, name: session?.user.name }}>
         <Card className='max-w-screen-xl m-auto my-12 py-16'>
             <>
                 <img className='w-8 m-auto mb-3' src={require('../assets/images/logo-z.svg')} />

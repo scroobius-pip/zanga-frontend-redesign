@@ -1,0 +1,8 @@
+mutation withdrawBalance($input:WithdrawBalanceInput!) {
+withdrawBalance(input:$input)  {
+  success
+  message
+  amount
+  referenceId
+}
+}

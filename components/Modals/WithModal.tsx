@@ -24,7 +24,7 @@ export default <T,>(Content: React.ElementType) => ({ visible, close, ...props }
     onClose={close}
     animationDuration={250}
   >
-    <Content {...props} />
+    <Content close={close} {...props} />
 
   </Modal>
 }

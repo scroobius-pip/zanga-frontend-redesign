@@ -51,6 +51,7 @@ const Page = ({ user, token, postedProperties, earnBreakdown }: Props) => {
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const session = await getSession(context) as Session
     const sdk = getZangaSdk(session?.token)
+    console.log(session)
 
     const user = await (async (): Promise<User> => {
         if (!session) return null
