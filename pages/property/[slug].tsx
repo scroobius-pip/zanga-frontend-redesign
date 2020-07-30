@@ -12,6 +12,9 @@ import { CostType } from '../../generated/graphql'
 import { getSession } from 'next-auth/client'
 import { parseCookies, setCookie } from 'nookies'
 import { Property, User, Session } from '../../types'
+import Head from 'next/head'
+
+
 
 interface Props {
     property: Property
@@ -29,6 +32,24 @@ const Page = ({ property: { images, title, bounty, city, costType, costValue, ow
 
     return <Layout user={user}>
         <>
+            <Head>
+                <title>Zanga - {title}</title>
+                <meta name="title" content={title} />
+                <meta name="description" content={description} />
+
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={`https://myzanga.com/property/${slug}`} />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={description} />
+                <meta property="og:image" content={images[0].url} />
+
+
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content={`https://myzanga.com/property/${slug}`} />
+                <meta property="twitter:title" content={title} />
+                <meta property="twitter:description" content={description} />
+                <meta property="twitter:image" content={images[0].url} />
+            </Head>
             {
                 lightBoxIsOpen && (
                     <Lightbox
