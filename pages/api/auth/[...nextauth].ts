@@ -3,7 +3,6 @@ import Providers from 'next-auth/providers'
 import jwt from 'jsonwebtoken'
 
 const options = {
-    site: process.env.SITE,
     providers: [
         Providers.Google({
             clientId: process.env.GOOGLE_CLIENT_ID,

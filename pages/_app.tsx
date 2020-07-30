@@ -8,7 +8,7 @@ export default function MyApp({ Component, pageProps }) {
 
   const { session } = pageProps
 
-  return <Provider options={{ site: 'http://myzanga.com' }} session={session}>
+  return <Provider session={session}>
 
     <Component key='the-app' {...pageProps} />
     <style jsx>

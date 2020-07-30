@@ -127,7 +127,7 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const session = await getSession(context) as Session
-    const sdk = getZangaSdk(session.token)
+    const sdk = getZangaSdk(session?.token)
 
     const filters = context.query as { budget?: string, state?: string, type?: CostType }
 
