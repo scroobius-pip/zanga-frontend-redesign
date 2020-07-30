@@ -1,0 +1,4 @@
+# Write your query or mutation here
+mutation updateUser($input:UserInput!){
+  updateUser(input:$input)
+}

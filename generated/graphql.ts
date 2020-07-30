@@ -320,6 +320,16 @@ export type IncrementPropertyViewMutation = (
   & Pick<Mutation, 'incrementPropertyView'>
 );
 
+export type UpdateUserMutationVariables = Exact<{
+  input: UserInput;
+}>;
+
+
+export type UpdateUserMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'updateUser'>
+);
+
 export type WithdrawBalanceMutationVariables = Exact<{
   input: WithdrawBalanceInput;
 }>;
@@ -459,16 +469,6 @@ export type SharedPropertiesQuery = (
   ) }
 );
 
-export type UpdateUserMutationVariables = Exact<{
-  input: UserInput;
-}>;
-
-
-export type UpdateUserMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'updateUser'>
-);
-
 export const PropertyDetailsFragmentDoc = gql`
     fragment PropertyDetails on Property {
   id
@@ -512,6 +512,11 @@ export const DeletePropertyDocument = gql`
 export const IncrementPropertyViewDocument = gql`
     mutation incrementPropertyView($referrerId: ID, $propertyId: ID!) {
   incrementPropertyView(input: {referrerId: $referrerId, propertyId: $propertyId})
+}
+    `;
+export const UpdateUserDocument = gql`
+    mutation updateUser($input: UserInput!) {
+  updateUser(input: $input)
 }
     `;
 export const WithdrawBalanceDocument = gql`
@@ -613,11 +618,6 @@ export const SharedPropertiesDocument = gql`
   }
 }
     `;
-export const UpdateUserDocument = gql`
-    mutation updateUser($input: UserInput!) {
-  updateUser(input: $input)
-}
-    `;
 
 export type SdkFunctionWrapper = <T>(action: () => Promise<T>) => Promise<T>;
 
@@ -636,6 +636,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     incrementPropertyView(variables: IncrementPropertyViewMutationVariables): Promise<IncrementPropertyViewMutation> {
       return withWrapper(() => client.request<IncrementPropertyViewMutation>(print(IncrementPropertyViewDocument), variables));
+    },
+    updateUser(variables: UpdateUserMutationVariables): Promise<UpdateUserMutation> {
+      return withWrapper(() => client.request<UpdateUserMutation>(print(UpdateUserDocument), variables));
     },
     withdrawBalance(variables: WithdrawBalanceMutationVariables): Promise<WithdrawBalanceMutation> {
       return withWrapper(() => client.request<WithdrawBalanceMutation>(print(WithdrawBalanceDocument), variables));
@@ -666,9 +669,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     sharedProperties(variables?: SharedPropertiesQueryVariables): Promise<SharedPropertiesQuery> {
       return withWrapper(() => client.request<SharedPropertiesQuery>(print(SharedPropertiesDocument), variables));
-    },
-    updateUser(variables: UpdateUserMutationVariables): Promise<UpdateUserMutation> {
-      return withWrapper(() => client.request<UpdateUserMutation>(print(UpdateUserDocument), variables));
     }
   };
 }
