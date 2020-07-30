@@ -63,7 +63,13 @@ const Page = ({ property: { images, title, bounty, city, costType, costValue, ow
                                 className='font-light block'
                                 icon='Share'
                                 variant='secondary'
-                                onClick={() => setShareLinkModalVisible(true)}
+                                onClick={() => {
+                                    if (user?.id)
+                                        setShareLinkModalVisible(true)
+                                    else {
+                                        window.location.replace('/earn-login')
+                                    }
+                                }}
                                 text={`₦${bounty}/share`}
                             />
                             <div className='text-red font-bold text-sm'>Remaining ₦{remainingExpense}</div>

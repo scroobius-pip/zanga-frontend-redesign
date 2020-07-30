@@ -24,7 +24,7 @@ const ShareButton = ({ title, url }: Props) => {
     }
 
     return <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: 10 }}>
-        <FacebookShareButton quote='' hashtag='#Coronavirus' {...ButtonProps} >
+        <FacebookShareButton quote='' hashtag='#Realestate' {...ButtonProps} >
             <FacebookIcon {...IconProps} />
         </FacebookShareButton>
         <TwitterShareButton {...ButtonProps} hashtags={['myzanga', 'property', 'realestate']} >
