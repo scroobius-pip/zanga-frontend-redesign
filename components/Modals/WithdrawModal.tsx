@@ -9,7 +9,7 @@ import { Bank } from '../../generated/graphql'
 import getZangaSdk from '../../functions/getZangaSdk'
 import { ErrorMessage } from '../ErrorMessage'
 
-const MIN_WITHDRAW = 5
+const MIN_WITHDRAW = 500
 export interface Props {
     balance: number
     token: string

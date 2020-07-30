@@ -8,7 +8,7 @@ import Button from '../Button'
 import getZangaSdk from '../../functions/getZangaSdk'
 import { ErrorMessage } from '../ErrorMessage'
 
-const MIN_BALANCE = 5
+const MIN_BALANCE = 50
 export interface Props {
     token: string
 }
