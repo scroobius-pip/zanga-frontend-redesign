@@ -21,12 +21,11 @@ const options = {
         secret: process.env.JWT_SECRET
     },
     callbacks: {
-        async session(session, user, sessionToken) {
-            // const jwtUser = { email: user.email, name: user.name }
+        async session(session, token) {
+            const user = { email: token.user.email, name: token.user.name }
             const jwtToken = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1000d' })
-            session.token = jwtToken
-            return Promise.resolve(session)
-            // return Promise.resolve({ ...session, user: { ...session.user, }, token: jwtToken })
+
+            return Promise.resolve({ ...session, user: { ...session.user, }, token: jwtToken })
         }
     }
 }
