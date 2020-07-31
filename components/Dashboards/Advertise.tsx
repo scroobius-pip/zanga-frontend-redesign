@@ -92,7 +92,7 @@ export default ({ token, user, postedProperties: initialPostedProperties }: { to
                             text='Premium Service'
                             className=' font-semibold text-blue'
                         />
-                        <div className='ml-5 mt-5'>
+                        <div className='ml-5 mt-0 md:mt-5'>
                             <p className='text-blue'>Use our premium service to have your property featured, with our agents managing and marketing your property catalogue.</p>
 
                         </div>
