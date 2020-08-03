@@ -62,7 +62,8 @@ export default ({ token, user, postedProperties: initialPostedProperties }: { to
                 close={() => setTopupVisible(false)}
             />
             <h4 className='font-pop text-blue font-medium'>Welcome {user.name}!</h4>
-            <h2 className='font-bold font-pop text-blue text-3xl'>Dashboard</h2>
+            <h2 className='font-bold font-pop text-blue text-3xl'>Dashboard
+            </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 align-middle items-center gap-3 justify-center'>
                 <Card className='mt-10 w-full'>
                     <>
@@ -111,37 +112,40 @@ export default ({ token, user, postedProperties: initialPostedProperties }: { to
 
                     />
                 </a>
-                {postedProperties.length ? <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6'>
-                    <FlipMove enterAnimation="fade" staggerDurationBy={20} leaveAnimation="fade" typeName={null}>
+                <div className='mt-6'>
 
-                        {
-                            postedProperties.map(p => <div key={p.id} className={`${propertyIdDeleteLoading === p.id && 'opacity-50'}`}>
-                                <DashboardPropertyCard
-                                    deleteProperty={() => onDeleteProperty(p.id)}
-                                    setBounty={() => setBountyVisible({ ...bountyVisible, title: p.title, propertyId: p.id, visible: true })}
-                                    bounty={p.bounty}
-                                    description={p.description}
-                                    featured={p.featured}
-                                    id={p.id}
-                                    slug={p.slug}
 
-                                    image={p.images[0].previewUrl}
-                                    location={`${p.city},${p.state}`}
-                                    price={''}
+                    {postedProperties.length ? <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6'>
+                        <FlipMove enterAnimation="fade" staggerDurationBy={20} leaveAnimation="fade" typeName={null}>
 
-                                    title={p.title}
-                                />
-                            </div>)
-                        }
-                    </FlipMove>
+                            {
+                                postedProperties.map(p => <div key={p.id} className={`${propertyIdDeleteLoading === p.id && 'opacity-50'}`}>
+                                    <DashboardPropertyCard
+                                        deleteProperty={() => onDeleteProperty(p.id)}
+                                        setBounty={() => setBountyVisible({ ...bountyVisible, title: p.title, propertyId: p.id, visible: true })}
+                                        bounty={p.bounty}
+                                        description={p.description}
+                                        featured={p.featured}
+                                        id={p.id}
+                                        slug={p.slug}
 
-                </div> :
-                    <EmptyState
-                        text="You've not created any properties yet."
+                                        image={p.images[0].previewUrl}
+                                        location={`${p.city},${p.state}`}
+                                        price={''}
 
-                    />
+                                        title={p.title}
+                                    />
+                                </div>)
+                            }
+                        </FlipMove>
 
-                }
+                    </div> :
+                        <EmptyState
+                            text="You've not created any properties yet."
+
+                        />
+                    }
+                </div>
 
             </div>
             <div>

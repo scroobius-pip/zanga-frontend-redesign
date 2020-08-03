@@ -15,5 +15,6 @@ export default () => {
             <a className='font-pop text-blue opacity-50 hover:opacity-100' href="mailto:admin@myzanga.com">Contact Us</a>
         </div>
         <div className='font-pop text-blue font-medium opacity-50 hover:opacity-100'>twitter:  <a href='#'>@myzanga_ng</a></div>
+        <div className='font-pop text-blue font-medium opacity-50 hover:opacity-100'>instagram:  <a href='https://www.instagram.com/myzanga_world/'>@myzanga_world</a></div>
     </footer>
 }

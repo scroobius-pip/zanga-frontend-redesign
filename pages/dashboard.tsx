@@ -12,6 +12,7 @@ import Advertise, { AdvertiseBreakdownItemProps } from '../components/Dashboards
 import Earn, { EarnBreakdownItemProps } from '../components/Dashboards/Earn'
 import { DashboardProperty } from '../components/DashboardPropertyCard'
 import { userInfo, type } from 'os'
+import Button from '../components/Button'
 
 interface Props {
     user?: User
@@ -33,16 +34,19 @@ const Page = ({ user, token, postedProperties, earnBreakdown }: Props) => {
 
 
     return <Layout user={user}>
-        {
-            user?.type === UserType.Unassigned ?
-                <div className='max-w-lg mt-16 m-auto'>
-                    <SelectAccountType token={token} />
-                </div> : user?.type === UserType.Agency ?
-                    <Advertise postedProperties={postedProperties} user={user} token={token} /> :
-                    <Earn breakdown={earnBreakdown} user={user} token={token} />
+        <div>
+
+            {
+                user?.type === UserType.Unassigned ?
+                    <div className='max-w-lg mt-16 m-auto'>
+                        <SelectAccountType token={token} />
+                    </div> : user?.type === UserType.Agency ?
+                        <Advertise postedProperties={postedProperties} user={user} token={token} /> :
+                        <Earn breakdown={earnBreakdown} user={user} token={token} />
 
 
-        }
+            }
+        </div>
     </Layout>
 }
 
