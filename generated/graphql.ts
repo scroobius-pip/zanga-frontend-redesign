@@ -399,7 +399,7 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me?: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'email' | 'type' | 'name' | 'balance'>
+    & Pick<User, 'id' | 'email' | 'type' | 'name' | 'phone' | 'balance'>
   )> }
 );
 
@@ -565,6 +565,7 @@ export const MeDocument = gql`
     email
     type
     name
+    phone
     balance
   }
 }

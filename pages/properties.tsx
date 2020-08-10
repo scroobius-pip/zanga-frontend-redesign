@@ -102,7 +102,8 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
                                 location={`${property.city},${property.state}`}
                                 title={property.title}
                                 key={property.id}
-                                price={`${property.costType} @ ${property.costType === CostType.Rent ? `${formatCurrency(property.costValue, true)}/yr` : `₦${property.costValue}`}`}
+                                price={property.costValue}
+                                priceType={property.costType}
                             />
                         })}
 

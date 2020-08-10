@@ -47,7 +47,7 @@ export default (props: Props) => {
                 <div className='w-full'>
                     <TextInput
                         value={filters.budget}
-                        type='number'
+                        type='currency'
                         onChange={(budget) => { setFilters({ ...filters, budget }) }}
                         label='Budget'
                     />

@@ -52,6 +52,7 @@
     "react-markdown": "^4.3.1",
     "react-mde": "^10.1.0",
     "react-modal-hook": "^3.0.0",
+    "react-number-format": "^4.4.1",
     "react-responsive-modal": "^5.0.2",
     "react-share": "^4.2.1",
     "react-styled-carousel-am": "^1.0.1",

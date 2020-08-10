@@ -31,9 +31,9 @@ const Card = ({ description, featured = false, id, slug, image, price, title, lo
                     <img className='w-full h-full' src={image} />
                 </div>
                 <div>
-                    <h4 className='text-blue font-bold text-lg font-pop  mb-2'>{title}</h4>
+                    <h4 className='text-blue font-bold text-base font-pop  mb-2'>{title}</h4>
                     <div className='font-pop opacity-75 text-blue flex items-center'>
-                        <Icons.Location className='fill-current  mr-2 h-4 w-4' />
+                        <Icons.Location className='fill-current  mr-1 h-4 w-4' />
                         <span>{location}</span>
                     </div>
                 </div>

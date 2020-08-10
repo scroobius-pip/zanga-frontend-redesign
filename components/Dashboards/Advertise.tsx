@@ -130,7 +130,7 @@ export default ({ token, user, postedProperties: initialPostedProperties }: { to
                                         slug={p.slug}
 
                                         image={p.images[0].previewUrl}
-                                        location={`${p.city},${p.state}`}
+                                        location={`${p.city}, ${p.state}`}
                                         price={''}
 
                                         title={p.title}

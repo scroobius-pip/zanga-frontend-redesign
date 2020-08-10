@@ -1,4 +1,5 @@
 import React from 'react'
+import NumberFormat from 'react-number-format';
 
 interface Props {
     onChange?: (text: string) => any
@@ -21,18 +22,34 @@ export default ({ onChange, disabled, placeholder, label, type, value, name = ''
             {label}
         </label>
         }
-        {!textArea ? <input
-            contentEditable={editable}
-            name={name}
-            onChange={(e) => { onChange && onChange(e.target.value) }}
-            value={value}
-            ref={ref}
-            type={type}
-            id={label}
-            disabled={disabled}
-            placeholder={placeholder}
-            className='bg-grey font-int font-text font-bold text-blue block w-full rounded-none duration-150 focus:outline-none py-2 px-4 appearance-none'
-        /> :
+        {!textArea ?
+            type === 'currency' ?
+                <NumberFormat
+                    contentEditable={editable}
+                    name={name}
+                    onValueChange={(e) => { onChange && onChange(e.value) }}
+                    value={value}
+                    ref={ref}
+                    allowNegative={false}
+                    thousandSeparator=','
+                    prefix='₦'
+                    id={label}
+                    disabled={disabled}
+                    placeholder={placeholder}
+                    className='bg-grey font-int font-text font-bold text-blue block w-full rounded-none duration-150 focus:outline-none py-2 px-4 appearance-none'
+                /> :
+                <input
+                    contentEditable={editable}
+                    name={name}
+                    onChange={(e) => { onChange && onChange(e.target.value) }}
+                    value={value}
+                    ref={ref}
+                    type={type}
+                    id={label}
+                    disabled={disabled}
+                    placeholder={placeholder}
+                    className='bg-grey font-int font-text font-bold text-blue block w-full rounded-none duration-150 focus:outline-none py-2 px-4 appearance-none'
+                /> :
             <textarea
                 contentEditable={editable}
                 name={name}

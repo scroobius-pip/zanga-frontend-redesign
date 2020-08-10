@@ -13,7 +13,7 @@ import { getSession } from 'next-auth/client'
 import { parseCookies, setCookie } from 'nookies'
 import { Property, User, Session } from '../../types'
 import Head from 'next/head'
-
+import NumberFormat from 'react-number-format'
 
 
 interface Props {
@@ -22,8 +22,8 @@ interface Props {
 }
 
 
-const Page = ({ property: { images, title, bounty, city, costType, costValue, owner, state, id, remainingExpense, description, slug }, user }: Props) => {
-
+const Page = ({ property: { images, title, bounty, city, costType, costValue: _costValue, owner, state, id, remainingExpense, description, slug }, user }: Props) => {
+    const CostValue = <NumberFormat displayType='text' value={_costValue} prefix='₦' isNumericString thousandSeparator='.' decimalSeparator='' suffix={CostType[costType] ? '/yr' : ''} />
     const [photoIndex, setPhotoIndex] = useState(0)
     const [lightBoxIsOpen, setLightBoxIsOpen] = useState(false)
     const [shareLinkModalVisible, setShareLinkModalVisible] = useState(false)
@@ -98,11 +98,11 @@ const Page = ({ property: { images, title, bounty, city, costType, costValue, ow
                     </div>
                     <div className='font-pop opacity-75 text-blue flex items-center'>
                         <Icons.Location className='fill-current  mr-2 h-4 w-4' />
-                        <span >{`${state}`}, {`${city}`}</span>
+                        <span >{`${state}`},{`${city}`}</span>
                     </div>
                     <div>
                         <h1 className='font-pop text-blue text-2xl font-semibold'>{title}</h1>
-                        <h3 className='font-pop text-xl text-blue'>{costType} @ {costType === CostType.Rent ? `₦${costValue}/yr` : `₦${costValue}`}</h3>
+                        <h3 className='font-pop text-xl text-blue'>{costType} @ {CostValue} </h3>
                     </div>
                     <div className='mt-5'>
                         <div className=' bg-cover relative   bg-no-repeat -mx-10 h-64' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${images[0].url})`, height: 500 }}>

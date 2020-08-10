@@ -18,7 +18,7 @@ import { ErrorMessage } from '../components/ErrorMessage'
 
 
 interface Props {
-    user?: User
+    user?: User & { displayName: string, phone: string }
     token?: string
 }
 
@@ -31,8 +31,8 @@ const imagekit = new ImageKit({
 
 const Page = ({ user, token }: Props) => {
     const [loading, setLoading] = useState(false)
-    const [phoneNo, setPhoneNo] = useState<string>()
-    const [userName, setUserName] = useState<string>('10')
+    const [phoneNo, setPhoneNo] = useState<string>(user.phone)
+    const [userName, setUserName] = useState<string>(user.displayName)
     const [userType, setUserType] = useState<UserType>(user?.type)
 
     const [errorMessage, setErrorMessage] = useState('')
@@ -65,6 +65,7 @@ const Page = ({ user, token }: Props) => {
                             <TextInput
                                 onChange={setUserName}
                                 label='User Name'
+                                value={userName}
                                 placeholder='User Name'
 
                             />
@@ -75,6 +76,7 @@ const Page = ({ user, token }: Props) => {
                             <TextInput
                                 onChange={setPhoneNo}
                                 label='Phone Number'
+                                value={phoneNo}
                                 placeholder='Phone Number'
                                 type='tel'
                             />
@@ -136,10 +138,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
     return {
         props: {
-            user: session ? await (async (): Promise<User> => {
-                const { me: { id, name, type, } } = await sdk.me()
+            user: session ? await (async (): Promise<Props['user']> => {
+                const { me: { id, name, type, phone } } = await sdk.me()
                 return {
                     name: session.user.name,
+                    displayName: name,
+                    phone,
                     id,
                     image: session.user.image,
                     type,

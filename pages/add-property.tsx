@@ -120,7 +120,7 @@ const Page = ({ user, token }: Props) => {
                         <div className=' md:pr-2' style={{ flex: 2 }}>
                             <TextInput
                                 onChange={setPrice}
-                                type='number'
+                                type='currency'
                                 label='Price'
                                 placeholder='Price'
                             />

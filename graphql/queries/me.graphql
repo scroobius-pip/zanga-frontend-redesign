@@ -4,6 +4,7 @@ query me{
     email
     type
     name
+    phone
     balance
   }
 }
