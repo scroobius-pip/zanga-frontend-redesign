@@ -11,6 +11,9 @@ export default function MyApp({ Component, pageProps }) {
 
   return <Provider session={session}>
     <Head>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175017430-1"></script>
+      <script dangerouslySetInnerHTML={googleAnalyticsCode} />
+
       <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
       <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
       <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
@@ -38,4 +41,15 @@ export default function MyApp({ Component, pageProps }) {
   `}
     </style>
   </Provider>
+}
+
+
+const googleAnalyticsCode = {
+  __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-175017430-1');
+  `
 }
