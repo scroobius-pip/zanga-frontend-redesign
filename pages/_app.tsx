@@ -31,6 +31,21 @@ export default function MyApp({ Component, pageProps }) {
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
       <meta name="theme-color" content="#ffffff" />
+      <meta name="title" content="Zanga - Advertise real estate and earn money" />
+      <meta name="description" content="Advertise your property for free on our platform, and reach more audience than traditional channels" />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://myzanga.com/" />
+      <meta property="og:title" content="Zanga - Advertise real estate and earn money" />
+      <meta property="og:description" content="Advertise your property for free on our platform, and reach more audience than traditional channels" />
+      <meta property="og:image" content="https://myzanga.com/zanga-logo.png" />
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="https://myzanga.com/" />
+      <meta property="twitter:title" content="Zanga - Advertise real estate and earn money" />
+      <meta property="twitter:description" content="Advertise your property for free on our platform, and reach more audience than traditional channels" />
+      <meta property="twitter:image" content="https://myzanga.com/zanga-logo.png" />
+
     </Head>
     <Component key='the-app' {...pageProps} />
     <style jsx>
