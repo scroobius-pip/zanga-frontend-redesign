@@ -55,7 +55,7 @@ export default (props: Props) => {
                             value={depositValue}
                             onChange={(value) => setDepositValue(parseInt(value) || 0)}
                             label='How much do you want to deposit into your account?'
-                            type='number'
+                            type='currency'
                         />
                         <ErrorMessage
                             text={`The deposit should be at least NGN ${MIN_BALANCE}`}

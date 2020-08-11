@@ -24,11 +24,11 @@ export default ({ description, slug, featured = false, id, image, price, title, 
             {featured && <div className='text-blue font-pop py-2 px-4 bg-orange bg-opacity-100   border-2 border-solid border-orange text-sm'>Promoted</div>}
         </div>
         <div className='flex sm:flex-row flex-col mb-5'>
-            <div className='w-full mb-5 sm:pr-5 sm:w-2/5'>
-                <img className='w-full h-full' src={image} />
+            <div className='w-full mb-5 sm:pr-5 sm:w-3/5'>
+                <img style={{ maxHeight: 220 }} className='w-full h-full' src={image} />
             </div>
             <div>
-                <h4 className='text-blue font-bold text-lg font-pop mb-2'>{title}</h4>
+                <h4 className='text-blue font-semibold text-base font-pop mb-2'>{title}</h4>
                 <div className='font-pop opacity-75 text-blue flex items-center'>
                     <Icons.Location className='fill-current  mr-2 h-4 w-4' />
                     <span>{location}</span>

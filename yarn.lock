@@ -2635,10 +2635,6 @@
     aggregate-error "3.0.1"
     tslib "~2.0.0"
 
-"@houdiniproject/react-i18n-currency-input@^2.0.0-pre3":
-  version "2.0.0-pre3"
-  resolved "https://registry.yarnpkg.com/@houdiniproject/react-i18n-currency-input/-/react-i18n-currency-input-2.0.0-pre3.tgz#717fbd6cfa3d290de9bc0e337072c6411ce3affb"
-
 "@iarna/cli@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@iarna/cli/-/cli-1.2.0.tgz#0f7af5e851afe895104583c4ca07377a8094d641"

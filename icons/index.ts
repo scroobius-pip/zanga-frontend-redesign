@@ -28,4 +28,5 @@ export default {
     Info,
     Warning,
     Gear
+    
 } as { [name in IconNames]: any }
