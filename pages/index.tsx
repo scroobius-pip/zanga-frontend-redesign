@@ -17,11 +17,30 @@ interface Props {
 
 }
 
-const Page = ({ featured }: Props) => {
+const Page = () => {
 
   const [session, loading] = useSession()
+  const [featured, setFeatured] = useState<FeaturedProps['properties']>([])
 
+  const getFeatured = async () => {
+    const sdk = getZangaSdk()
+    const { properties = [] } = (await sdk.featuredProperties())?.featuredProperties
+    setFeatured(
+      properties.map(p => ({
+        description: p.description,
+        image: p.images[0].url,
+        price: p.costValue,
+        slug: p.slug,
+        priceType: p.costType,
+        title: p.title
+      }))
+    )
 
+  }
+
+  useEffect(() => {
+    getFeatured()
+  }, [])
 
   return (
     <Layout user={{ id: '', image: session?.user.image, name: session?.user.name, type: UserType.Unassigned }}>
@@ -120,29 +139,6 @@ const Page = ({ featured }: Props) => {
     </Layout>
   )
 }
-
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const sdk = getZangaSdk()
-
-
-  const { properties = [] } = (await getZangaSdk().featuredProperties())?.featuredProperties
-
-  return {
-    props: {
-      featured: properties.map(p => ({
-        description: p.description,
-        image: p.images[0].previewUrl,
-        price: p.costType === CostType.Rent ? `₦${p.costValue}/yr` : `₦${p.costValue}`,
-        slug: p.slug,
-        title: p.title
-      })),
-
-    }
-  }
-
-
-}
-
 
 
 export default (Page)

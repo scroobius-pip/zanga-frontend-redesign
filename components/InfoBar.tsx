@@ -9,8 +9,8 @@ interface Props {
 
 export default ({ className, icon, text }: Props) => {
     const Icon = Icons[icon]
-    return <div className={` ${className}`}>
-        <Icon className='w-6 h-6 inline fill-current mr-3' />
+    return <div className={`flex items-center ${className}`}>
+        <Icon className='w-4 h-4 inline fill-current mr-2 align-middle' />
         <span className='font-pop '>{text}</span>
     </div>
 }

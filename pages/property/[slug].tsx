@@ -74,79 +74,98 @@ const Page = ({ property: { images, title, bounty, city, costType, costValue: _c
                 url={`myzanga.com/property/${slug}?ref=${user?.id}`}
                 visible={shareLinkModalVisible}
             />
-            <Card className='my-10 max-w-6xl m-auto' noShadow>
+            <section className='my-10 max-w-6xl m-auto'>
 
-                <div>
-                    <div className='w-full justify-end flex mb-5'>
-                        <div className='text-right'>
+                <div className='mb-8'>
+                    <a className='font-pop text-blue  mb-5 ' href="/properties">
+                        <Button
+                            preventDefault={false}
+                            onClick={() => { }}
+                            text='All properties'
+                            variant='secondary'
+                            icon='Right'
+                        />
 
-                            <Button
-                                className='font-light block'
-                                icon='Share'
-                                variant='secondary'
-                                onClick={() => {
-                                    if (user?.id)
-                                        setShareLinkModalVisible(true)
-                                    else {
-                                        window.location.replace('/earn-login')
-                                    }
-                                }}
-                                text={`₦${bounty}/share`}
-                            />
-                            <div className='text-red font-bold text-sm'>Remaining ₦{remainingExpense}</div>
-                        </div>
-                    </div>
-                    <div className='font-pop opacity-75 text-blue flex items-center'>
-                        <Icons.Location className='fill-current  mr-2 h-4 w-4' />
-                        <span >{`${state}`},{`${city}`}</span>
-                    </div>
+                    </a>
+                </div>
+                {/* <div className='mb-8'>
+                    <a className='font-pop text-blue opacity-50 mb-5 hover:opacity-100' href="/properties">/properties</a>
+                </div> */}
+
+
+                <Card noShadow>
+
                     <div>
-                        <h1 className='font-pop text-blue text-2xl font-semibold'>{title}</h1>
-                        <h3 className='font-pop text-xl text-blue'>{costType} @ {CostValue} </h3>
-                    </div>
-                    <div className='mt-5'>
-                        <div className=' bg-cover relative   bg-no-repeat -mx-10 h-64' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${images[0].url})`, height: 500 }}>
-                            <div
-                                style={{ bottom: '2.5rem', right: '2.5rem' }}
-                                className='absolute'
-                            >
+                        <div className='w-full justify-end flex mb-5'>
+                            <div className='text-right'>
 
                                 <Button
-
+                                    className='font-light block'
+                                    icon='Share'
                                     variant='secondary'
-                                    icon='Eye'
-                                    onClick={() => setLightBoxIsOpen(true)}
-                                    text={`Photos (${images.length})`}
+                                    onClick={() => {
+                                        if (user?.id)
+                                            setShareLinkModalVisible(true)
+                                        else {
+                                            window.location.replace('/earn-login')
+                                        }
+                                    }}
+                                    text={`₦${bounty}/share`}
                                 />
+                                <div className='text-red font-bold text-sm'>Remaining ₦{remainingExpense}</div>
                             </div>
                         </div>
+                        <div className='font-pop opacity-75 text-blue flex items-center'>
+                            <Icons.Location className='fill-current  mr-2 h-4 w-4' />
+                            <span >{`${city.trim()}, ${state.trim()}`}</span>
+                        </div>
+                        <div>
+                            <h1 className='font-pop text-blue text-2xl font-semibold'>{title}</h1>
+                            <h3 className='font-pop text-xl text-blue'>{costType} @ {CostValue} </h3>
+                        </div>
+                        <div className='mt-5'>
+                            <div className=' bg-cover relative   bg-no-repeat -mx-10 h-64' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${images[0].url})`, height: 500 }}>
+                                <div
+                                    style={{ bottom: '2.5rem', right: '2.5rem' }}
+                                    className='absolute'
+                                >
 
-                    </div>
-                    <div className='mt-5'>
-                        <h4 className='font-pop text-xl font-bold text-blue'>Description</h4>
-                        <p className='font-pop whitespace-pre-wrap text-blue mt-5'>
-                            {/* <PropertyDescription
+                                    <Button
+
+                                        variant='secondary'
+                                        icon='Eye'
+                                        onClick={() => setLightBoxIsOpen(true)}
+                                        text={`Photos (${images.length})`}
+                                    />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className='mt-8'>
+                            <h4 className='font-pop text-xl font-bold text-blue'>Description</h4>
+                            <p className='font-pop whitespace-pre-wrap text-blue mt-1'>
+                                {/* <PropertyDescription
                                 description={description}
                             /> */}
-                            {description}
-                        </p>
+                                {description.trim()}
+                            </p>
+                        </div>
+                        <div style={{ maxWidth: '15rem' }} className=' ml-auto mt-10'>
+                            <Button
+                                variant='primary'
+                                className='w-full'
+                                icon='Phone'
+                                onClick={() => setAgentInfo(true)}
+                                text='Contact Agent'
+                            />
+                            {agentInfo && <div className='bg-grey text-center p-2 w-full'>
+                                <h5>{owner.name}</h5>
+                                <a className='font-pop text-blue font-bold' href={`tel:${owner.phone}`}>{owner.phone}</a>
+                            </div>}
+                        </div>
                     </div>
-                    <div style={{ maxWidth: '15rem' }} className=' ml-auto mt-10'>
-                        <Button
-                            variant='primary'
-                            className='w-full'
-                            icon='Phone'
-                            onClick={() => setAgentInfo(true)}
-                            text='Contact Agent'
-                        />
-                        {agentInfo && <div className='bg-grey text-center p-2 w-full'>
-                            <h5>{owner.name}</h5>
-                            <a className='font-pop text-blue font-bold' href={`tel:${owner.phone}`}>{owner.phone}</a>
-                        </div>}
-                    </div>
-                </div>
-            </Card>
-
+                </Card>
+            </section>
         </>
     </Layout>
 }

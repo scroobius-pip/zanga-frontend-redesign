@@ -19,7 +19,8 @@ export default ({ token }: Props) => {
         const sdk = getZangaSdk(token)
         await sdk.updateUser({ input: { type: UserType[type] } })
         setLoading(false)
-        location.reload()
+        location.replace('/settings')
+        // location.reload()
     }
 
     return <Card className={`${loading ? 'pointer-events-none opacity-50' : ''}`} >

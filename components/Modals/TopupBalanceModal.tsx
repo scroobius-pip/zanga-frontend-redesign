@@ -74,7 +74,7 @@ export default (props: Props) => {
                         onClick={onSubmit}
                     />
                     <InfoBar
-                        className='text-blue opacity-75 mt-5 text-right'
+                        className='text-blue opacity-75 mt-5 text-right '
                         text='10% service charge added'
                         icon='Info'
                     />

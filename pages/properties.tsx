@@ -95,11 +95,11 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
                                 onShare={onSharePropertyClick}
                                 slug={property.slug}
                                 bounty={property.bounty}
-                                description={property.description}
+                                description={property.description.trim()}
                                 featured={property.featured}
                                 id={property.id}
                                 image={property.images[0].previewUrl}
-                                location={`${property.city},${property.state}`}
+                                location={`${property.city.trim()}, ${property.state.trim()}`}
                                 title={property.title}
                                 key={property.id}
                                 price={property.costValue}
