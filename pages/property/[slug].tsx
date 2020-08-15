@@ -124,7 +124,7 @@ const Page = ({ property: { images, title, bounty, city, costType, costValue: _c
                             <h3 className='font-pop text-xl text-blue'>{costType} @ {CostValue} </h3>
                         </div>
                         <div className='mt-5'>
-                            <div className=' bg-cover relative   bg-no-repeat -mx-10 h-64' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${images[0].url})`, height: 500 }}>
+                            <div className=' bg-cover relative   bg-no-repeat -mx-10 h-64' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${images[0].url})`, height: 500,backgroundPosition:'center' }}>
                                 <div
                                     style={{ bottom: '2.5rem', right: '2.5rem' }}
                                     className='absolute'
