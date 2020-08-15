@@ -121,7 +121,7 @@ const Page = () => {
 
               <a href='/properties?type=Rent&state=Abuja'>
                 <Button
-
+                  preventDefault={false}
                   className='text-right'
                   text='More Properties'
                   onClick={() => { }}

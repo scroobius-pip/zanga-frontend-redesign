@@ -25,7 +25,7 @@ export default ({ description, slug, featured = false, id, image, price, title, 
         </div>
         <div className='flex sm:flex-row flex-col mb-2'>
             <div className='w-full mb-5 sm:pr-5 sm:w-2/5'>
-                <img style={{ maxHeight: 100 }} className='w-full h-full' src={image} />
+                <img style={{ maxHeight: 100, objectFit: 'cover' }} className='w-full h-full' src={image} />
             </div>
             <div>
                 <h4 className='text-blue font-semibold text-base font-pop mb-2'>{title}</h4>

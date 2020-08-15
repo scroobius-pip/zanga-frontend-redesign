@@ -57,7 +57,7 @@ export default ({ token, user, breakdown }: { token: string, user: User, breakdo
                             <ol className='list-decimal text-white'>
                                 <li className='m-2'>Head over to www.myzanga.com/properties</li>
                                 <li className='m-2'> Click the share button to generate your special sharing link. The button shows how much you earn each time a unique visitor visits your link  <img /> {/* Share button screenshot */}</li>
-                                <li className='m-2'> Copy the link and post online, anyone who visits the link through it would earn you money.</li>
+                                <li className='m-2'> Copy the link and post online, anyone who visits the property through your link would earn you money.</li>
 
                             </ol>
 
