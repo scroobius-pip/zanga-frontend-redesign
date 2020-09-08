@@ -52,7 +52,7 @@ export default (
           value={price}
           prefix="₦"
           isNumericString
-          thousandSeparator="."
+          thousandSeparator=","
           decimalSeparator=""
           suffix={CostType[priceType] === CostType.Rent ? "/yr" : ""}
         />
