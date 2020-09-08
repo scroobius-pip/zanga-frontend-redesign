@@ -24,7 +24,7 @@ interface Props {
 const imagekit = new ImageKit({
   publicKey: "public_fLIG6j3NBbHyQujCF+a3YOjpCrs=",
   urlEndpoint: "https://ik.imagekit.io/myzanga",
-  authenticationEndpoint: "https://y-nu.now.sh/server.js",
+  authenticationEndpoint: "https://y-nu.now.sh/server",
 });
 
 const Page = ({ user, token }: Props) => {
