@@ -49,7 +49,8 @@ const Page = ({ user, token }: Props) => {
       const imagekit = new ImageKit({
         publicKey: "public_fLIG6j3NBbHyQujCF+a3YOjpCrs=",
         urlEndpoint: "https://ik.imagekit.io/myzanga",
-        authenticationEndpoint: "https://y-nu.now.sh/server",
+        authenticationEndpoint:
+          `https://y-nu.now.sh/server?rand=${Math.random()}`,
       });
 
       imagekit.upload({
