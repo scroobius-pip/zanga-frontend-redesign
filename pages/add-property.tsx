@@ -21,12 +21,6 @@ interface Props {
   token?: string;
 }
 
-const imagekit = new ImageKit({
-  publicKey: "public_fLIG6j3NBbHyQujCF+a3YOjpCrs=",
-  urlEndpoint: "https://ik.imagekit.io/myzanga",
-  authenticationEndpoint: "https://y-nu.now.sh/server",
-});
-
 const Page = ({ user, token }: Props) => {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState<string>();
@@ -52,6 +46,12 @@ const Page = ({ user, token }: Props) => {
     file: File,
   ): Promise<{ url: string; previewUrl: string }> => {
     return new Promise((resolve, reject) => {
+      const imagekit = new ImageKit({
+        publicKey: "public_fLIG6j3NBbHyQujCF+a3YOjpCrs=",
+        urlEndpoint: "https://ik.imagekit.io/myzanga",
+        authenticationEndpoint: "https://y-nu.now.sh/server",
+      });
+
       imagekit.upload({
         file,
         fileName: file.name,
