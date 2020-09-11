@@ -86,7 +86,7 @@ const Page = ({ user, token }: Props) => {
           featured: false,
           images: imageUrls,
           location: {
-            city: capitalizeFirstLetter(city),
+            city: capitalizeFirstLetter(city).replace(/[^A-Za-z0-9]/g, ""),
             state,
           },
           title,
