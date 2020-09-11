@@ -108,7 +108,7 @@ const Page = () => {
                     Get paid for connecting your friends, family and followers
                     to their ideal homes and property.
                   </p>
-                  <a href={session.user ? "/dashboard" : "/earn-login"}>
+                  <a href={session?.user ? "/dashboard" : "/earn-login"}>
                     <Button
                       className="mt-5"
                       variant="primary"
@@ -116,7 +116,7 @@ const Page = () => {
                       icon="Right"
                       onClick={() =>
                         window.location.replace(
-                          session.user ? "/dashboard" : "/earn-login",
+                          session?.user ? "/dashboard" : "/earn-login",
                         )}
                     />
                   </a>
