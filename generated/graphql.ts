@@ -135,8 +135,8 @@ export type PropertyPoint = {
 };
 
 export type PropertiesInput = {
-  type: CostType;
-  state: Scalars['String'];
+  type?: Maybe<CostType>;
+  state?: Maybe<Scalars['String']>;
   budget?: Maybe<Scalars['Float']>;
   cursor?: Maybe<Scalars['String']>;
 };
@@ -162,6 +162,7 @@ export type Mutation = {
   deleteProperty: Scalars['Boolean'];
   incrementPropertyView?: Maybe<Scalars['Boolean']>;
   updateUser: Scalars['Boolean'];
+  updateProperty: Scalars['Boolean'];
   assignBounty: Scalars['Boolean'];
   withdrawBalance: WithdrawBalanceResult;
 };
@@ -184,6 +185,11 @@ export type MutationIncrementPropertyViewArgs = {
 
 export type MutationUpdateUserArgs = {
   input: UserInput;
+};
+
+
+export type MutationUpdatePropertyArgs = {
+  input: UpdatePropertyInput;
 };
 
 
@@ -225,6 +231,16 @@ export type UserInput = {
   type?: Maybe<UserType>;
   name?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
+};
+
+export type UpdatePropertyInput = {
+  propertyId: Scalars['ID'];
+  title: Scalars['String'];
+  location: LocationInput;
+  costValue: Scalars['Int'];
+  costType: CostType;
+  featured: Scalars['Boolean'];
+  description: Scalars['String'];
 };
 
 export type BountyInput = {
