@@ -15,6 +15,7 @@ import { useRouter } from 'next/router'
 import sortProperties, { PropertySortOptions } from '../functions/sortProperties'
 import { User, Property, Session } from '../types'
 import formatCurrency from '../functions/formatCurrency'
+import Head from 'next/head'
 
 
 interface Props {
@@ -51,6 +52,12 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
     return <Layout user={user}>
 
         <>
+            <Head>
+                <title
+                >
+                    Properties for {filters.type} in {filters.state}
+                </title>
+            </Head>
             <ShareLinkModal
                 close={() => setShareLinkModalVisible(false)}
                 title={sharedProperty?.title}

@@ -19,12 +19,13 @@ export default function MyApp({ Component, pageProps, err }) {
   return <Provider session={session}>
     <Head>
       <script
-        async
+        defer
         src="https://www.googletagmanager.com/gtag/js?id=UA-175017430-1"
       >
       </script>
-      <script dangerouslySetInnerHTML={googleAnalyticsCode} />
-
+      <script defer dangerouslySetInnerHTML={googleAnalyticsCode} />
+      <script defer dangerouslySetInnerHTML={tawkToCode} />
+      <script defer dangerouslySetInnerHTML={hotJarCode} />
       <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
       <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
       <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
@@ -138,3 +139,33 @@ const googleAnalyticsCode = {
   gtag('config', 'UA-175017430-1');
   `,
 };
+
+const tawkToCode = {
+  __html: `
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/5b46a88d4af8e57442dc8dcf/default';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  `
+}
+
+const hotJarCode = {
+  __html: `
+
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1997334,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+
+  
+  `
+}

@@ -4,7 +4,7 @@ import Logo from "./Logo";
 export default () => {
   return <footer className="bg-grey-light text-center">
     <Logo className="h-12 text-blue fill-current opacity-75 mb-5 m-auto" />
-    <span className="text-blue opacity-25">version 0.18</span>
+    <span className="text-blue opacity-25">version 0.20</span>
     <div
       className="flex justify-between align-middle mb-5 flex-col max-w-screen-sm m-auto sm:flex-row"
     >
@@ -33,7 +33,7 @@ export default () => {
     <div
       className="font-pop text-blue font-medium opacity-50 hover:opacity-100"
     >
-      twitter: <a href="#">@myzanga_ng</a>
+      {/* twitter: <a href="#">@myzanga2</a> */}
     </div>
     <div
       className="font-pop text-blue font-medium opacity-50 hover:opacity-100"
