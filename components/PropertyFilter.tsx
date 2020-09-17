@@ -19,9 +19,9 @@ interface Props {
 export default ({ initialFilters }: Props) => {
   const [filters, setFilters] = useState<Filters>(
     {
-      state: initialFilters.state ?? "Any",
-      type: initialFilters.type ?? "Any",
-      budget: initialFilters.budget ?? "",
+      state: initialFilters?.state ?? "Any",
+      type: initialFilters?.type ?? "Any",
+      budget: initialFilters?.budget ?? "",
     },
   );
 

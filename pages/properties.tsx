@@ -55,7 +55,7 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
             <Head>
                 <title
                 >
-                    Properties for {filters.type} in {filters.state}
+                    {[filters.type, filters.state].includes('Any') ? 'All Properties' : `Properties for ${filters.type} in ${filters.state}`}
                 </title>
             </Head>
             <ShareLinkModal
@@ -66,7 +66,7 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
             />
             <div className=' bg-cover mb-15 bg-no-repeat p-24 bg-fixed' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${require('../assets/images/properties-background.webp')})` }}>
                 <div className='max-w-6xl m-auto'>
-                    <h2 className='font-pop text-white text-4xl '>Properties for {filters.type} in {filters.state}</h2>
+                    <h2 className='font-pop text-white text-4xl '>{[filters.type, filters.state].includes('Any') ? 'All Properties' : `Properties for ${filters.type} in ${filters.state}`}</h2>
                 </div>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 max-w-6xl m-auto '>
@@ -155,8 +155,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
         props: {
             initialFilters: {
                 budget,
-                state,
-                type
+                state: state ?? 'Any',
+                type: type ?? 'Any'
             },
             initialProperties: result.properties.map(property => ({
                 bounty: property.bounty,
