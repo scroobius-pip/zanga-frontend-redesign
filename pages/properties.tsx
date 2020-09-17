@@ -142,8 +142,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     const validatedFilters = {
 
         budget: (parseFloat(filters.budget) || 0) > 0 ? parseFloat(filters.budget) : null,
-        state: (states.includes(filters.state)) ? filters.state : 'FCT',
-        type: [CostType.Rent, CostType.Sale].includes(filters.type) ? filters.type : CostType.Rent
+        state: (states.includes(filters.state)) ? filters.state : null,
+        type: [CostType.Rent, CostType.Sale].includes(filters.type) ? filters.type : null
     }
 
     const { budget, type, state } = validatedFilters

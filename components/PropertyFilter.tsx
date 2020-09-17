@@ -9,19 +9,19 @@ import { CostType } from "../generated/graphql";
 export interface Filters {
   state: string;
   budget: string | number;
-  type: CostType;
+  type: CostType | "Any";
 }
 
 interface Props {
   initialFilters?: Filters;
 }
 
-export default (props: Props) => {
+export default ({ initialFilters }: Props) => {
   const [filters, setFilters] = useState<Filters>(
-    props.initialFilters || {
-      state: "FCT",
-      type: CostType.Sale,
-      budget: "",
+    {
+      state: initialFilters.state ?? "Any",
+      type: initialFilters.type ?? "Any",
+      budget: initialFilters.budget ?? "",
     },
   );
 
@@ -37,7 +37,7 @@ export default (props: Props) => {
             onChange={(state) => {
               setFilters({ ...filters, state });
             }}
-            options={states.map((s) => ({ value: s, label: s }))}
+            options={[...states, "Any"].map((s) => ({ value: s, label: s }))}
           />
         </div>
         <div className="w-full ">
@@ -45,11 +45,12 @@ export default (props: Props) => {
             initialValue={filters.type}
             label="Type"
             onChange={(type) => {
-              setFilters({ ...filters, type: CostType[type] });
+              setFilters({ ...filters, type: type !== "Any" ? CostType[type] : type });
             }}
             options={[
               { label: "Sale", value: "Sale" },
               { label: "Rent", value: "Rent" },
+              { label: "Any", value: "Any" }
             ]}
           />
         </div>
@@ -73,7 +74,7 @@ export default (props: Props) => {
               variant="primary"
               text="Search"
               icon="Search"
-              onClick={() => {}}
+              onClick={() => { }}
             />
           </a>
         </div>
