@@ -61,7 +61,7 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
             <ShareLinkModal
                 close={() => setShareLinkModalVisible(false)}
                 title={sharedProperty?.title}
-                url={`myzanga.com/property/${sharedProperty?.slug}?ref=${user?.id}`}
+                url={`www.myzanga.com/property/${sharedProperty?.slug}?ref=${user?.id}`}
                 visible={shareLinkModalVisible}
             />
             <div className=' bg-cover mb-15 bg-no-repeat p-24 bg-fixed' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${require('../assets/images/properties-background.webp')})` }}>

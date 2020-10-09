@@ -93,7 +93,7 @@ const Page = (
       <ShareLinkModal
         close={() => setShareLinkModalVisible(false)}
         title={title}
-        url={`myzanga.com/property/${slug}?ref=${user?.id}`}
+        url={`www.myzanga.com/property/${slug}?ref=${user?.id}`}
         visible={shareLinkModalVisible}
       />
       <section className="my-10 max-w-6xl m-auto">
@@ -101,7 +101,7 @@ const Page = (
           <a className="font-pop text-blue  mb-5 " href="/properties">
             <Button
               preventDefault={false}
-              onClick={() => {}}
+              onClick={() => { }}
               text="All properties"
               variant="secondary"
               icon="Right"
@@ -151,8 +151,7 @@ const Page = (
                 className=" bg-cover relative   bg-no-repeat -mx-10 h-64"
                 style={{
                   backgroundImage:
-                    `linear-gradient(#23436182, #23436182), url(${
-                      images[0].url
+                    `linear-gradient(#23436182, #23436182), url(${images[0].url
                     })`,
                   height: 500,
                   backgroundPosition: "center",
