@@ -52,7 +52,7 @@ export default (props: Props) => {
       console.log(errors);
       const RenderErrors = ({ errors }) => {
         return <div className="text-red">
-          {errors.maxNumber && <span>Number of selected images exceed 10</span>}
+          {errors.maxNumber && <span>Number of selected images exceeds 10</span>}
           {errors.acceptType &&
             <span>Your selected file type is not allowed</span>}
           {errors.maxFileSize && <span>Selected file size exceed 5mb</span>}
