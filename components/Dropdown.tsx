@@ -33,7 +33,7 @@ export default ({ onChange, disabled, label, options, initialValue, name = '', v
                 onChange={(e) => { onChange && onChange(e.target.value) }}
                 className={`font-int font-bold block w-full rounded-none duration-150 focus:outline-none py-2 px-4 appearance-none ${variantStyle}`}
             >
-                {options.map(option => <option selected={initialValue === option.value} className='text-blue bg-white font-pop p-5' value={option.value}>{option.label}</option>)}
+                {options.map(option => <option key={option.label} selected={initialValue === option.value} className='text-blue bg-white font-pop p-5' value={option.value}>{option.label}</option>)}
             </select>
             <div className={`${variantStyle} pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 `}>
                 <svg className="fill-current h-4 w-4" viewBox="0 0 7.682 4.2">
