@@ -8,7 +8,7 @@ export default () => {
     <div
       className="flex justify-between align-middle mb-5 flex-col max-w-screen-sm m-auto sm:flex-row"
     >
-      <a className="font-pop text-blue opacity-50 hover:opacity-100" href="#">
+      <a className="font-pop text-blue opacity-50 hover:opacity-100" href="/about">
         About Us
       </a>
       <a
