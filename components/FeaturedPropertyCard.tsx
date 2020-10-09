@@ -17,31 +17,45 @@ export default (
 ) => {
   return <a
     href={"/property/" + slug}
-    className="min-h-full overflow-hidden shadow-lg w-full group text-center"
+    className="h-full   overflow-hidden shadow-lg w-full group text-center"
   >
     <div className="duration-150 opacity-75 hover:opacity-100 relative ">
-      <a href={"/property/" + slug}>
-        <Button
-          className="absolute right-0 bottom-0 opacity-0 group-hover:opacity-100 duration-200"
-          variant="secondary"
-          onClick={() => {}}
-          text="View"
-          preventDefault={false}
-          icon="Right"
-        />
-      </a>
-      <img
-        className="w-full"
-        style={{ maxHeight: 400 }}
-        alt={title}
-        src={image.replace(
-          "tr:n-media_library_thumbnail",
-          "tr:n-thumbnail",
-        )}
-      />
+
+      <div>
+
+        <div
+          className="w-full "
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: 0,
+            paddingBottom: '80%',
+            backgroundImage: `url(${image.replace(
+              "tr:n-media_library_thumbnail",
+              "tr:n-thumbnail"
+            )})`
+
+          }}
+        // alt={title}
+        // src={}
+        >
+          <a href={"/property/" + slug}>
+            <Button
+              className="absolute right-0 bottom-0 opacity-0 group-hover:opacity-100 duration-200"
+              variant="secondary"
+              onClick={() => { }}
+              text="View"
+              preventDefault={false}
+              icon="Right"
+            />
+          </a>
+        </div>
+      </div>
+
+
     </div>
 
-    <div className="bg-white px-10 py-6">
+    <div className="bg-white px-10 py-6 h-full">
       <div className="font-pop text-blue font-bold text-xl mb-2">{title}</div>
       <div className="h-10 overflow-hidden">
         <p className="font-pop text-blue truncate text-base">{description}</p>
@@ -58,5 +72,5 @@ export default (
         />
       </h5>
     </div>
-  </a>;
+  </a>
 };
