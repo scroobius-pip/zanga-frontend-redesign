@@ -80,6 +80,7 @@ export default ({ onSubmit, initialState, loading }: Props) => {
         <div>
             <div className="">
                 <TextInput
+                    value={title}
                     onChange={setTitle}
                     label="Title"
                     placeholder="Title"
@@ -96,6 +97,7 @@ export default ({ onSubmit, initialState, loading }: Props) => {
             <div className="flex flex-col md:flex-row mt-5">
                 <div className=" md:pr-2" style={{ flex: 2 }}>
                     <TextInput
+                        value={price}
                         onChange={setPrice}
                         type="currency"
                         label="Price"
@@ -114,7 +116,7 @@ export default ({ onSubmit, initialState, loading }: Props) => {
                             { label: "Rent", value: "Rent" },
                             { label: "Sale", value: "Sale" },
                         ]}
-                        initialValue="Rent"
+                        initialValue={type}
                     />
                 </div>
             </div>
@@ -124,6 +126,7 @@ export default ({ onSubmit, initialState, loading }: Props) => {
                         onChange={setCity}
                         label="City"
                         placeholder="City"
+                        value={city}
                     />
                     <ErrorMessage
                         text="City should be specified"
@@ -132,7 +135,7 @@ export default ({ onSubmit, initialState, loading }: Props) => {
                 </div>
                 <div className="mt-5 md:mt-0" style={{ flex: 1 }}>
                     <Dropdown
-                        initialValue={"FCT"}
+                        initialValue={state}
                         label="State"
                         onChange={setState}
                         options={states.map((s) => ({ value: s, label: s }))}
@@ -143,6 +146,7 @@ export default ({ onSubmit, initialState, loading }: Props) => {
                 <TextInput
                     onChange={setDescription}
                     textArea
+                    value={description}
                     label="Description"
                     placeholder="Describe the property"
                 />

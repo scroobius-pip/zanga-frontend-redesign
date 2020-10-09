@@ -234,7 +234,7 @@ export type UserInput = {
 };
 
 export type UpdatePropertyInput = {
-  propertyId: Scalars['ID'];
+  propertySlug: Scalars['ID'];
   title: Scalars['String'];
   location: LocationInput;
   costValue: Scalars['Int'];
@@ -334,6 +334,16 @@ export type IncrementPropertyViewMutationVariables = Exact<{
 export type IncrementPropertyViewMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'incrementPropertyView'>
+);
+
+export type UpdatePropertyMutationVariables = Exact<{
+  input: UpdatePropertyInput;
+}>;
+
+
+export type UpdatePropertyMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'updateProperty'>
 );
 
 export type UpdateUserMutationVariables = Exact<{
@@ -530,6 +540,11 @@ export const IncrementPropertyViewDocument = gql`
   incrementPropertyView(input: {referrerId: $referrerId, propertyId: $propertyId})
 }
     `;
+export const UpdatePropertyDocument = gql`
+    mutation updateProperty($input: UpdatePropertyInput!) {
+  updateProperty(input: $input)
+}
+    `;
 export const UpdateUserDocument = gql`
     mutation updateUser($input: UserInput!) {
   updateUser(input: $input)
@@ -653,6 +668,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     incrementPropertyView(variables: IncrementPropertyViewMutationVariables): Promise<IncrementPropertyViewMutation> {
       return withWrapper(() => client.request<IncrementPropertyViewMutation>(print(IncrementPropertyViewDocument), variables));
+    },
+    updateProperty(variables: UpdatePropertyMutationVariables): Promise<UpdatePropertyMutation> {
+      return withWrapper(() => client.request<UpdatePropertyMutation>(print(UpdatePropertyDocument), variables));
     },
     updateUser(variables: UpdateUserMutationVariables): Promise<UpdateUserMutation> {
       return withWrapper(() => client.request<UpdateUserMutation>(print(UpdateUserDocument), variables));

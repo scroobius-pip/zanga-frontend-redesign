@@ -12,6 +12,7 @@ import { User, Property } from '../../types'
 import EmptyState from '../EmptyState'
 import formatCurrency from '../../functions/formatCurrency'
 import FlipMove from 'react-flip-move';
+import { useRouter } from 'next/router'
 
 
 export default ({ token, user, postedProperties: initialPostedProperties }: { token: string, user: User, postedProperties: Property[] }) => {
@@ -25,6 +26,7 @@ export default ({ token, user, postedProperties: initialPostedProperties }: { to
     const [topupVisible, setTopupVisible] = useState(false)
 
     // const sdk = getZangaSdk(token)
+    const router = useRouter()
 
     const onDeleteProperty = async (propertyId: string) => {
 
@@ -121,6 +123,9 @@ export default ({ token, user, postedProperties: initialPostedProperties }: { to
                             {
                                 postedProperties.map(p => <div key={p.id} className={`${propertyIdDeleteLoading === p.id && 'opacity-50'}`}>
                                     <DashboardPropertyCard
+                                        editProperty={() => {
+                                            router.push(`/edit-property/${p.slug}`)
+                                        }}
                                         deleteProperty={() => onDeleteProperty(p.id)}
                                         setBounty={() => setBountyVisible({ ...bountyVisible, title: p.title, propertyId: p.id, visible: true })}
                                         bounty={p.bounty}

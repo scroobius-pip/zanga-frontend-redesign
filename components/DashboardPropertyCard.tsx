@@ -14,9 +14,9 @@ export interface DashboardProperty {
     bounty: number
     ref?: any
 }
-type Props = DashboardProperty & { setBounty: () => any, deleteProperty: () => any }
+type Props = DashboardProperty & { setBounty: () => any, deleteProperty: () => any, editProperty: () => any }
 
-const Card = ({ description, featured = false, id, slug, image, price, title, location, bounty, setBounty, deleteProperty, ref }: Props) => {
+const Card = ({ description, featured = false, id, slug, image, price, title, location, bounty, setBounty, deleteProperty, ref, editProperty }: Props) => {
     const [showMore, setShowMore] = useState(false)
 
     return <a href={`/property/${slug}`} ref={ref}>
@@ -60,11 +60,15 @@ const Card = ({ description, featured = false, id, slug, image, price, title, lo
                     text={`₦${bounty}/share`}
                 />
             </div>
-            <div>
+            <div className='flex justify-between items-end mt-2'>
                 <span onClick={e => {
                     deleteProperty()
                     e.preventDefault()
                 }} className='font-pop text-red font-bold text-sm opacity-75 hover:opacity-100'>Delete</span>
+                <span onClick={e => {
+                    editProperty()
+                    e.preventDefault()
+                }} className='font-pop text-blue font-bold text-sm opacity-75 hover:opacity-100'>Edit</span>
             </div>
         </div>
     </a>

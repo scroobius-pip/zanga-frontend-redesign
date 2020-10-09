@@ -35,7 +35,7 @@ export default (
 
   return <a href={`/property/${slug}`}>
     <div
-      className={"p-5 shadow-xl hover:shadow-md duration-700 mb-1 w-ful bg-white border-2 hover:border-opacity-100 border-opacity-0 border-solid " +
+      className={"p-5  shadow-xl hover:shadow-md duration-500 mb-5 md:mb-1 w-ful bg-white border-2  hover:border-opacity-100 border-opacity-0 border-solid " +
         (!featured ? "border-blue" : "border-orange")}
     >
       <div className="w-full flex justify-end mb-2">
@@ -49,7 +49,7 @@ export default (
       <div className="flex sm:flex-row flex-col mb-2">
         <div className="w-full mb-5 sm:pr-5 sm:w-2/5">
           <img
-            style={{ maxHeight: 100, objectFit: "cover" }}
+            style={{ objectFit: "cover" }}
             className="w-full h-full"
             src={image.replace(
               "tr:n-media_library_thumbnail",
@@ -67,7 +67,7 @@ export default (
           </div>
         </div>
       </div>
-      <div className="mb-5">
+      {/* <div className="mb-5">
         <p
           className={"text-blue duration-150  font-pop mb-1 " +
             (!showMore ? "truncate" : "")}
@@ -83,7 +83,7 @@ export default (
         >
           Read {showMore ? "less" : "more"}
         </div>
-      </div>
+      </div> */}
       <div className="flex justify-between w-full  items-center">
         <h3 className="font-bold font-pop text-green text-xl">
           {priceType} @ <NumberFormat

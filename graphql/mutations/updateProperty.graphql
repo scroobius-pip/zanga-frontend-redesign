@@ -1,0 +1,3 @@
+mutation updateProperty($input:UpdatePropertyInput!) {
+  updateProperty(input:$input)
+}
