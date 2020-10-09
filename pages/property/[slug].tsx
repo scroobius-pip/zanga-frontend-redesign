@@ -91,6 +91,7 @@ const Page = (
         />
       )}
       <ShareLinkModal
+        bounty={`₦${bounty}/share`}
         close={() => setShareLinkModalVisible(false)}
         title={title}
         url={`www.myzanga.com/property/${slug}?ref=${user?.id}`}

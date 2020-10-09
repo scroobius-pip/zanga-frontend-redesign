@@ -6,10 +6,11 @@ import TextInput from '../TextInput'
 
 export interface Props {
     url: string
+    bounty: string
     title: string
 }
 
-const ShareButton = ({ title, url }: Props) => {
+const ShareButton = ({ title, url, bounty }: Props) => {
     const ButtonProps = {
         url,
         style: {
@@ -42,7 +43,7 @@ export default (props: Props) => {
             <h2 className=' text-center font-pop text-xl  font-bold text-blue mb-5'>Your Referral Link </h2>
             <InfoBar
                 icon='Info'
-                text='Share this link on any platform and earn per visit.'
+                text={`Share this link on social media and earn ${props.bounty} every time someone visits!`}
                 className='text-blue mb-5 opacity-75'
             />
             <TextInput

@@ -1,6 +1,6 @@
 import { Property } from '../types'
 
-export type PropertySortOptions = 'bounty_asc' | 'bounty_desc' | 'price_asc' | 'price_desc'
+export type PropertySortOptions = 'bounty_asc' | 'bounty_desc' | 'price_asc' | 'price_desc' | 'featured'
 
 type PropertySortSpec = {
     [option in PropertySortOptions]: {
@@ -25,6 +25,10 @@ const PropertySortSpec: PropertySortSpec = {
     price_desc: {
         invert: false,
         key: 'costValue'
+    },
+    featured: {
+        invert: true,
+        key: 'featured'
     }
 }
 

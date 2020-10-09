@@ -29,7 +29,7 @@ export default (
     bounty,
     onShare,
     priceType,
-  }: Property & { onShare: (title: string, slug: string) => any },
+  }: Property & { onShare: (title: string, slug: string, bounty: string) => any },
 ) => {
   const [showMore, setShowMore] = useState(false);
 
@@ -103,7 +103,7 @@ export default (
           icon="Share"
           variant="secondary"
           onClick={() => {
-            onShare(title, slug);
+            onShare(title, slug, `₦${bounty}`);
           }}
           text={`₦${bounty}/share`}
         />

@@ -28,20 +28,20 @@ interface Props {
 const Page = ({ user, initialFilters, initialProperties }: Props) => {
     const [shareLinkModalVisible, setShareLinkModalVisible] = useState(false)
     const [properties, setProperties] = useState(initialProperties)
-    const [sortBy, setSortyBy] = useState<PropertySortOptions>()
-    const [sharedProperty, setSharedProperty] = useState<{ title: string, slug: string }>()
+    const [sortBy, setSortyBy] = useState<PropertySortOptions>('featured')
+    const [sharedProperty, setSharedProperty] = useState<{ title: string, slug: string, bounty: string }>()
     const [loading, setLoading] = useState(false)
     const [filters, setFilters] = useState(initialFilters)
     const router = useRouter()
 
-    const onSharePropertyClick = (title: string, slug: string) => {
+    const onSharePropertyClick = (title: string, slug: string, bounty: string) => {
         if (!user) {
             //show login modal
             router.push('/earn-login')
             return
         }
 
-        setSharedProperty({ slug, title })
+        setSharedProperty({ slug, title, bounty })
         setShareLinkModalVisible(true)
 
 
@@ -63,8 +63,9 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
                 title={sharedProperty?.title}
                 url={`www.myzanga.com/property/${sharedProperty?.slug}?ref=${user?.id}`}
                 visible={shareLinkModalVisible}
+                bounty={sharedProperty?.bounty}
             />
-            <div className=' bg-cover mb-15 bg-no-repeat p-24 bg-fixed' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${require('../assets/images/properties-background.webp')})` }}>
+            <div className=' bg-cover mb-15 bg-no-repeat p-24 bg-fixed' style={{ backgroundImage: `linear-gradient(#23436182, #23436182), url(${require('../assets/images/properties-background.jpg')})` }}>
                 <div className='max-w-6xl m-auto'>
                     <h2 className='font-pop text-white text-4xl '>{[filters.type, filters.state].includes('Any') ? 'All Properties' : `Properties for ${filters.type} in ${filters.state}`}</h2>
                 </div>
@@ -88,8 +89,8 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
                                 <Dropdown
 
                                     onChange={(value: any) => setSortyBy(value)}
-                                    initialValue='Price'
-                                    options={['bounty_asc', 'bounty_desc', 'price_asc', 'price_desc'].map(o => ({ label: o.toUpperCase(), value: o }))}
+                                    initialValue='featured'
+                                    options={['bounty_asc', 'bounty_desc', 'price_asc', 'price_desc', 'featured'].map(o => ({ label: o.toUpperCase(), value: o }))}
                                     variant='dark'
                                     label='Sort by'
                                 />
