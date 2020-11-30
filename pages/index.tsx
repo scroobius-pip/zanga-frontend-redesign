@@ -99,7 +99,7 @@ const Page = () => {
                         fill="#234361"
                       />
                     </svg>
-                     Market Property & Earn Money
+                     Promote Property & Earn Money
                   </span>
                   <p className="font-pop text-blue font-bold mt-4">
                     Interested in a quick and easy way to making money ?

@@ -33,10 +33,10 @@ export default () => {
     <div
       className="font-pop text-blue font-medium opacity-50 hover:opacity-100"
     >
-      {/* twitter: <a href="#">@myzanga2</a> */}
+      twitter: <a href="https://twitter.com/MyzangaW">@MyzangaW</a>
     </div>
     <div
-      className="font-pop text-blue font-medium opacity-50 hover:opacity-100"
+      className="font-pop text-blue font-medium opacity-50 hover:opacity-100 mb-12"
     >
       instagram: <a href="https://www.instagram.com/myzanga_world/">
         @myzanga_world
