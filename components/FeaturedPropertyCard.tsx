@@ -17,7 +17,7 @@ export default (
 ) => {
   return <a
     href={"/property/" + slug}
-    className="h-full   overflow-hidden shadow-lg w-full group text-center"
+    className="h-full sm:shadow-lg   overflow-hidden shadow-lg w-full group text-center"
   >
     <div className="duration-150 opacity-75 hover:opacity-100 relative ">
 
@@ -55,8 +55,8 @@ export default (
 
     </div>
 
-    <div className="bg-white px-10 py-6 h-full">
-      <div className="font-pop text-blue font-bold text-xl mb-2">{title}</div>
+    <div className="bg-white px-10 py-6 ">
+      <div className="font-pop text-blue truncate font-bold text-xl mb-2">{title}</div>
       <div className="h-10 overflow-hidden">
         <p className="font-pop text-blue truncate text-base">{description}</p>
       </div>

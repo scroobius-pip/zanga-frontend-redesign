@@ -64,7 +64,7 @@ const Page = () => {
           >
             Find your ideal home
           </h2>
-          <div className="max-w-screen-md m-auto ">
+          <div className="max-w-screen-lg m-auto ">
             <PropertyFilter />
           </div>
         </div>
@@ -259,29 +259,30 @@ const Page = () => {
             </a>
           </Card>
         </div>
-        <section className="max-w-screen-sm mt-20 m-auto mb-48">
+        <section className="max-w-screen-lg mt-20 m-auto mb-48">
           {!!featured.length && <>
             <h3 className="text-center font-bold font-pop text-blue text-3xl">
               Featured Property
             </h3>
-            <p className="text-center  font-pop text-blue text-base ">
+            <p className="text-center  font-pop text-blue text-base mb-10 ">
               Trusted and beautiful properties in Nigeria
             </p>
             <FeaturedPropertyCardSlider properties={featured} />
-            <div className="flex sm:justify-end justify-center">
-              <a href="/properties?type=Sale&state=Abuja">
-                <Button
-                  preventDefault={false}
-                  className="text-right"
-                  text="More Properties"
-                  onClick={() => {}}
-                  icon="Right"
-                  variant="secondary"
-                />
-              </a>
-            </div>
+
           </>}
         </section>
+        {/* <div className="max-w-screen-lg m-auto flex justify-end">
+          <a href="/properties?type=Sale&state=Abuja">
+            <Button
+              preventDefault={false}
+              className="text-right"
+              text="More Properties"
+              onClick={() => { }}
+              icon="Right"
+              variant="secondary"
+            />
+          </a>
+        </div> */}
       </div>
     </Layout>
   );

@@ -7,22 +7,22 @@ export interface Props {
 }
 
 export default (props: Props) => {
-    return <>
-        <Slider
-            cardsToShow={1}
-            autoSlide={4000}
-            showArrows={false}
-        >
-            {props.properties.map((property, i) => {
-                return <div
-                    className='w-full p-5 flex justify-start align-middle items-center'
-                >
-                    <FeaturedPropertyCard
-                        {...property}
-                        key={i}
-                    />
-                </div>
-            })}
-        </Slider>
-    </>
+    return <div
+        className="grid grid-cols-1  sm:grid-cols-2 gap-4 md:grid-cols-3 "
+    // cardsToShow={1}
+    // autoSlide={4000}
+    // showArrows={false}
+    >
+        {props.properties.map((property, i) => {
+            return <div
+
+            >
+                <FeaturedPropertyCard
+                    {...property}
+                    key={i}
+                />
+            </div>
+        })}
+    </div>
+
 }

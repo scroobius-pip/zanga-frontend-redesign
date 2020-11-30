@@ -35,10 +35,11 @@ export default (
 
   return <a href={`/property/${slug}`}>
     <div
-      className={"p-5  shadow-xl hover:shadow-md duration-500 mb-5 md:mb-1 w-ful bg-white border-2  hover:border-opacity-100 border-opacity-0 border-solid " +
+      className={"p-5  hover:shadow-md duration-75 mb-2 md:mb-1 w-ful bg-white border-2  hover:border-opacity-100 border-opacity-0 border-solid " +
         (!featured ? "border-blue" : "border-orange")}
     >
-      <div className="w-full flex justify-end mb-2">
+      <div className="w-full flex justify-end align-middle items-center  mb-2">
+        {/* <span className='text-blue font-pop text-base'>Posted last week</span> */}
         {featured &&
           <div
             className="text-blue font-pop py-2 px-4 bg-orange bg-opacity-100   border-2 border-solid border-orange text-sm"
@@ -49,7 +50,8 @@ export default (
       <div className="flex sm:flex-row flex-col mb-2">
         <div className="w-full mb-5 sm:pr-5 sm:w-2/5">
           <img
-            style={{ objectFit: "cover" }}
+            alt={title}
+            style={{ objectFit: "cover", maxHeight: 200 }}
             className="w-full h-full"
             src={image.replace(
               "tr:n-media_library_thumbnail",
@@ -61,10 +63,21 @@ export default (
           <h4 className="text-blue font-semibold text-base font-pop mb-2">
             {title}
           </h4>
-          <div className="font-pop opacity-75 text-blue flex items-center">
+          <div className="font-pop opacity-75 text-blue flex items-center mb-2">
             <Icons.Location className="fill-current  mr-1 h-4 w-4" />
-            <span>{location}</span>
+            <span className='text-sm'>{location}</span>
           </div>
+          <h3 className="font-bold font-pop text-green text-lg">
+            {priceType} @ <NumberFormat
+              displayType="text"
+              value={price}
+              prefix="₦"
+              isNumericString
+              thousandSeparator=","
+              decimalSeparator=""
+              suffix={CostType[priceType] === CostType.Rent ? "/yr" : ""}
+            />
+          </h3>
         </div>
       </div>
       {/* <div className="mb-5">
@@ -84,18 +97,8 @@ export default (
           Read {showMore ? "less" : "more"}
         </div>
       </div> */}
-      <div className="flex justify-between w-full  items-center">
-        <h3 className="font-bold font-pop text-green text-xl">
-          {priceType} @ <NumberFormat
-            displayType="text"
-            value={price}
-            prefix="₦"
-            isNumericString
-            thousandSeparator=","
-            decimalSeparator=""
-            suffix={CostType[priceType] === CostType.Rent ? "/yr" : ""}
-          />
-        </h3>
+      <div className="flex justify-end w-full  items-center">
+
         {/* <ShareButton /> */}
         <Button
           disabled={bounty < 1}
