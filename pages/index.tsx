@@ -71,10 +71,10 @@ const Page = () => {
         <p
           className="text-center font-bold font-pop text-blue text-3xl mt-10 p-2"
         >
-          Get started with Zanga
+          Here's what you can do with Zanga
         </p>
         <div
-          className="grid max-w-4xl  sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5 m-auto w-full my-10"
+          className="grid max-w-5xl  sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5 m-auto w-full my-10"
         >
           <Card
             className="hover:-translate-y-3  cursor-pointer duration-300  transform flex flex-col sm:flex-row lg:flex-col"
@@ -82,16 +82,16 @@ const Page = () => {
             <a href="/earn-login" className="outline-none block">
               <>
                 <img
-                  className="m-auto max-w-xs sm:mr-10"
+                  className=" max-w-xs sm:mr-10"
                   src={require("../assets/images/wallet.svg")}
                 />
 
                 <div className="relative">
                   <span
-                    className="font-pop text-blue font-bold text-lg mt-5 flex"
+                    className="font-pop text-blue font-bold text-xl  mt-12 flex"
                   >
                     <svg
-                      className="mr-2 fill-current hover:text-grey h-6 w-6"
+                      className="mr-2 fill-current hover:text-grey h-8 w-8"
                       viewBox="0 0 15.765 14.451"
                     >
                       <path
@@ -99,7 +99,7 @@ const Page = () => {
                         fill="#234361"
                       />
                     </svg>
-                    Start Earning
+                     Market Property & Earn Money
                   </span>
                   <p className="font-pop text-blue font-bold mt-4">
                     Interested in a quick and easy way to making money ?
@@ -201,16 +201,16 @@ const Page = () => {
             <a href="/listing-login" className="outline-none block">
               <>
                 <img
-                  className="m-auto max-w-xs sm:mr-10"
+                  className="max-w-xs sm:mr-10"
                   src={require("../assets/images/advertise.svg")}
                 />
 
                 <div className="relative">
                   <span
-                    className="font-pop text-blue font-bold text-lg mt-5 flex"
+                    className="font-pop text-blue font-bold text-xl mt-12 flex"
                   >
                     <svg
-                      className="mr-2 fill-current hover:text-grey h-6 w-6"
+                      className="mr-2 fill-current hover:text-grey h-8 w-8"
                       viewBox="0 0 14.312 13.817"
                     >
                       <path
@@ -268,21 +268,21 @@ const Page = () => {
               Trusted and beautiful properties in Nigeria
             </p>
             <FeaturedPropertyCardSlider properties={featured} />
-
+            <div className="max-w-screen-lg mt-12 m-auto flex justify-end">
+              <a href="/properties?type=Sale&state=Abuja">
+                <Button
+                  preventDefault={false}
+                  className="text-right"
+                  text="More Properties"
+                  onClick={() => { }}
+                  icon="Right"
+                  variant="secondary"
+                />
+              </a>
+            </div>
           </>}
         </section>
-        {/* <div className="max-w-screen-lg m-auto flex justify-end">
-          <a href="/properties?type=Sale&state=Abuja">
-            <Button
-              preventDefault={false}
-              className="text-right"
-              text="More Properties"
-              onClick={() => { }}
-              icon="Right"
-              variant="secondary"
-            />
-          </a>
-        </div> */}
+
       </div>
     </Layout>
   );

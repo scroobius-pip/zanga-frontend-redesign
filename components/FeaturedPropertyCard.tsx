@@ -17,9 +17,9 @@ export default (
 ) => {
   return <a
     href={"/property/" + slug}
-    className="h-full sm:shadow-lg   overflow-hidden shadow-lg w-full group text-center"
+    className="h-full   overflow-hidden shadow-xl w-full group text-center"
   >
-    <div className="duration-150 opacity-75 hover:opacity-100 relative ">
+    <div className="duration-150 shadow-lg opacity-75 hover:opacity-100 relative ">
 
       <div>
 
