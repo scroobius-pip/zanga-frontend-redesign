@@ -3,29 +3,47 @@ import Layout from "../../components/Layout";
 import { Property, Session, User } from "../../types";
 import { GetServerSideProps } from "next";
 import getZangaSdk from "../../functions/getZangaSdk";
-import { getSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import ImageKit from "imagekit-javascript";
 import PropertyForm, { ReturnState } from '../../components/PropertyForm';
 import { useRouter } from 'next/router';
+import { getMe } from '../../functions/getMe';
 
 interface Props {
     property: Property
-    user?: User;
-    token?: string;
+
 }
 
-const Page = ({ user, token, property }: Props) => {
+const Page = ({ property }: Props) => {
     const [loading, setLoading] = useState(false);
     const router = useRouter()
+    const [session, sessionLoading] = useSession()
+    const [user, setUser] = useState<User>()
 
     useEffect(() => {
         if (!property) {
             router.replace('/add-property')
         }
-        if (!user) {
-            router.replace('/')
-        }
+
     }, [])
+
+    useEffect(() => {
+
+        const sdk = getZangaSdk(session?.token)
+
+        if (!loading && !session) {
+            router.replace('/')
+            return
+        }
+
+        getMe(sdk, session).then(me => {
+            setUser(me)
+        }).catch(err => {
+            console.log(err)
+        })
+
+
+    }, [sessionLoading, session])
 
     const imagekitUpload = (
         file: File,
@@ -61,7 +79,7 @@ const Page = ({ user, token, property }: Props) => {
     async function submit({ imageFiles, price, city, state, description, title, type, }: ReturnState) {
         try {
             setLoading(true)
-            const sdk = getZangaSdk(token);
+            const sdk = getZangaSdk(session?.token);
             const { updateProperty } = await sdk.updateProperty({
                 input: {
                     costType: type,
@@ -120,8 +138,8 @@ const Page = ({ user, token, property }: Props) => {
 export const getServerSideProps: GetServerSideProps<Props> = async (
     context,
 ) => {
-    const session = await getSession(context) as Session;
-    const sdk = getZangaSdk(session?.token);
+
+    const sdk = getZangaSdk();
     const { slug } = context.query as { slug?: string };
 
 
@@ -130,18 +148,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 
     return {
         props: {
-            user: session
-                ? await (async (): Promise<User> => {
-                    const { me: { id, type } } = await sdk.me();
-                    return {
-                        name: session.user.name,
-                        id,
-                        image: session.user.image,
-                        type,
-                    };
-                })()
-                : null,
-            token: session?.token ?? "",
+
             property: property ? {
                 bounty: property.bounty,
                 costType: property.costType,

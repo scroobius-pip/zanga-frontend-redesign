@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import PropertyFilter, { Filters } from '../components/PropertyFilter'
 import Dropdown from '../components/Dropdown'
 import PropertyCard from '../components/PropertyCard'
 import Pagination from '../components/Pagination'
-import { CostType } from '../generated/graphql'
+import { CostType, UserType } from '../generated/graphql'
 import { ShareLinkModal } from '../components/Modals'
 import { GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import getZangaSdk from '../functions/getZangaSdk'
 import states from '../assets/states'
 import EmptyState from '../components/EmptyState'
@@ -16,23 +16,43 @@ import sortProperties, { PropertySortOptions } from '../functions/sortProperties
 import { User, Property, Session } from '../types'
 import formatCurrency from '../functions/formatCurrency'
 import Head from 'next/head'
+import { getMe } from '../functions/getMe'
 
 
 interface Props {
     initialFilters: Filters
     initialProperties: Property[]
     nextPageCursor?: string
-    user?: User
+
 }
 
-const Page = ({ user, initialFilters, initialProperties }: Props) => {
+const Page = ({ initialFilters, initialProperties }: Props) => {
     const [shareLinkModalVisible, setShareLinkModalVisible] = useState(false)
     const [properties, setProperties] = useState(initialProperties)
+    const [session, sessionLoading] = useSession();
+    const [user, setUser] = useState<User>()
     const [sortBy, setSortyBy] = useState<PropertySortOptions>('featured')
     const [sharedProperty, setSharedProperty] = useState<{ title: string, slug: string, bounty: string }>()
     const [loading, setLoading] = useState(false)
     const [filters, setFilters] = useState(initialFilters)
     const router = useRouter()
+
+
+    useEffect(() => {
+        if (!loading && !session) {
+            return
+        }
+        const sdk = getZangaSdk(session?.token)
+
+        getMe(sdk, session).then(me => {
+            setUser(me)
+
+        }).catch(err => {
+            console.log(err)
+        })
+
+    }, [session, sessionLoading])
+
 
     const onSharePropertyClick = (title: string, slug: string, bounty: string) => {
         if (!user) {
@@ -43,13 +63,16 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
 
         setSharedProperty({ slug, title, bounty })
         setShareLinkModalVisible(true)
-
-
     }
 
     const sortedProperties = sortBy ? sortProperties(properties, sortBy) : properties
 
-    return <Layout user={user}>
+    return <Layout user={{
+        id: "",
+        image: session?.user.image,
+        name: session?.user.name,
+        type: UserType.Unassigned,
+    }}>
 
         <>
             <Head>
@@ -135,8 +158,8 @@ const Page = ({ user, initialFilters, initialProperties }: Props) => {
 
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-    const session = await getSession(context) as Session
-    const sdk = getZangaSdk(session?.token)
+    // const session = await getSession(context) as Session
+    const sdk = getZangaSdk()
 
     const filters = context.query as { budget?: string, state?: string, type?: CostType }
 
@@ -182,15 +205,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
                 // featured:result.
             })),
             nextPageCursor: result.pageInfo.after,
-            user: session ? await (async (): Promise<User> => {
-                const { me: { id, name, type } } = await sdk.me()
-                return {
-                    name: session.user.name,
-                    id,
-                    image: session.user.image,
-                    type
-                }
-            })() : null
+
         }
     }
 

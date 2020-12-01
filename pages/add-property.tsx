@@ -1,19 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { Session, User } from "../types";
 import { GetServerSideProps } from "next";
 import getZangaSdk from "../functions/getZangaSdk";
-import { getSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import ImageKit from "imagekit-javascript";
 import PropertyForm, { ReturnState } from '../components/PropertyForm';
+import { getMe } from '../functions/getMe';
+import { useRouter } from 'next/router';
 
-interface Props {
-  user?: User;
-  token?: string;
-}
 
-const Page = ({ user, token }: Props) => {
+
+const Page = () => {
   const [loading, setLoading] = useState(false);
+  const [session, sessionLoading] = useSession()
+  const [user, setUser] = useState<User>()
+  const router = useRouter()
+
+
+  useEffect(() => {
+
+    const sdk = getZangaSdk(session?.token)
+
+    if (!loading && !session) {
+      router.replace('/')
+      return
+    }
+
+    getMe(sdk, session).then(me => {
+      setUser(me)
+    }).catch(err => {
+      console.log(err)
+    })
+
+
+  }, [sessionLoading, session])
 
   const imagekitUpload = (
     file: File,
@@ -49,7 +70,7 @@ const Page = ({ user, token }: Props) => {
   async function submit({ imageFiles, price, city, state, description, title, type, }: ReturnState) {
     try {
       setLoading(true)
-      const sdk = getZangaSdk(token);
+      const sdk = getZangaSdk(session?.token);
       const imageUrls = await uploadImages(imageFiles);
       const { createProperty } = await sdk.createProperty({
         input: {
@@ -95,29 +116,6 @@ const Page = ({ user, token }: Props) => {
   </Layout>;
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async (
-  context,
-) => {
-  const session = await getSession(context) as Session;
-  const sdk = getZangaSdk(session?.token);
-
-  return {
-    props: {
-      user: session
-        ? await (async (): Promise<User> => {
-          const { me: { id, type } } = await sdk.me();
-          return {
-            name: session.user.name,
-            id,
-            image: session.user.image,
-            type,
-          };
-        })()
-        : null,
-      token: session?.token ?? "",
-    },
-  };
-};
 
 
 function capitalizeFirstLetter(string: string) {

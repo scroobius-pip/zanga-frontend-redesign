@@ -217,7 +217,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   const { slug, ref } = context.query as { slug: string; ref: string };
 
   const property = (await (sdk.property({ slug }))).property;
-
+  
   if (!cookies.viewed) {
     setCookie(context, "viewed", "true", {
       path: "/property/" + context.params.slug,

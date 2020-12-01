@@ -18,7 +18,7 @@ export default ({ children, user }: Props) => {
 
     // const [session, loading] = useSession()
     useEffect(() => {
-        console.log(user)
+        // console.log(user)
     }, [])
 
     return <div className='bg-grey-light flex flex-col h-screen justify-between '>
