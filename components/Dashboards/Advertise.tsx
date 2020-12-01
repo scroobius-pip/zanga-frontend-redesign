@@ -99,6 +99,7 @@ export default ({ token, user, postedProperties: initialPostedProperties }: { to
                             <p className='text-blue'>Use our premium service to have your property featured, with our agents managing and marketing your property catalogue.</p>
 
                         </div>
+                        <a href="mailto:info@myzanga.com" className="mt-10 text-blue font-pop font-semibold">Contact us</a>
                     </div>
                 </Card>
             </div>
