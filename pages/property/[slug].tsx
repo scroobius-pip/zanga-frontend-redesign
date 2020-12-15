@@ -9,15 +9,16 @@ import { ShareLinkModal } from "../../components/Modals";
 import { GetStaticProps, GetServerSideProps } from "next";
 import getZangaSdk from "../../functions/getZangaSdk";
 import { CostType } from "../../generated/graphql";
-import { getSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import { parseCookies, setCookie } from "nookies";
 import { Property, User, Session } from "../../types";
 import Head from "next/head";
 import NumberFormat from "react-number-format";
+import { getMe } from '../../functions/getMe';
 
 interface Props {
   property: Property;
-  user?: User;
+
 }
 
 const Page = (
@@ -36,7 +37,7 @@ const Page = (
       description,
       slug,
     },
-    user,
+
   }: Props,
 ) => {
   const CostValue = <NumberFormat
@@ -52,6 +53,25 @@ const Page = (
   const [lightBoxIsOpen, setLightBoxIsOpen] = useState(false);
   const [shareLinkModalVisible, setShareLinkModalVisible] = useState(false);
   const [agentInfo, setAgentInfo] = useState(false);
+  const [user, setUser] = useState<User>()
+  const [session, sessionLoading] = useSession();
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (!loading && !session) {
+        return
+    }
+    const sdk = getZangaSdk(session?.token)
+
+    getMe(sdk, session).then(me => {
+        setUser(me)
+
+    }).catch(err => {
+        console.log(err)
+    })
+
+}, [session, sessionLoading])
+
 
   return <Layout user={user}>
     <>
@@ -210,14 +230,13 @@ const Page = (
 export const getServerSideProps: GetServerSideProps<Props> = async (
   context,
 ) => {
-  const session = await getSession(context) as Session;
-  const sdk = getZangaSdk(session?.token);
+  const sdk = getZangaSdk();
   const cookies = parseCookies(context);
 
   const { slug, ref } = context.query as { slug: string; ref: string };
 
   const property = (await (sdk.property({ slug }))).property;
-  
+
   if (!cookies.viewed) {
     setCookie(context, "viewed", "true", {
       path: "/property/" + context.params.slug,
@@ -251,18 +270,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
         featured: property.featured,
         // featured:result.
       },
-      session,
-      user: session
-        ? await (async (): Promise<User> => {
-          const { me: { id, name, type } } = await sdk.me();
-          return {
-            name: session.user.name,
-            id,
-            image: session.user.image,
-            type,
-          };
-        })()
-        : null,
+
     },
   };
 };
