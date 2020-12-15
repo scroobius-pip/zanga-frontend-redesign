@@ -28,11 +28,12 @@
     "@sentry/node": "^5.22.3",
     "@sentry/webpack-plugin": "^1.12.1",
     "@storybook/cli": "^5.3.19",
+    "@tailwindcss/postcss7-compat": "^2.0.2",
     "@types/cookie": "^0.4.0",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/react-modal": "^3.10.6",
     "@zeit/next-source-maps": "0.0.4-canary.1",
-    "autoprefixer": "^9.8.4",
+    "autoprefixer": "9",
     "babel-loader": "^8.1.0",
     "graphql": "^15.3.0",
     "graphql-request": "^2.0.0",
@@ -45,6 +46,7 @@
     "next-images": "^1.4.1",
     "nookies": "^2.3.2",
     "os-locale": "^5.0.0",
+    "postcss": "7",
     "postcss-import": "^12.0.1",
     "react": "^16.13.1",
     "react-avatar": "^3.9.7",
@@ -62,6 +64,7 @@
     "react-styled-carousel-am": "^1.0.1",
     "react-tiny-popover": "^5.1.0",
     "showdown": "^1.9.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "yargs": "^15.3.1"
   },
   "devDependencies": {
@@ -80,7 +83,6 @@
     "graphql-codegen-apollo-next-ssr": "^0.0.14",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",
-    "tailwindcss": "^1.5.2",
     "typescript": "^3.9.5",
     "yarn-upgrade-all": "^0.5.2"
   },

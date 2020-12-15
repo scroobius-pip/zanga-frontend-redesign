@@ -4,6 +4,7 @@ import FeaturedPropertyCard, { Props as FeaturedProperty } from './FeaturedPrope
 
 export interface Props {
     properties: FeaturedProperty[]
+    loading: boolean
 }
 
 export default (props: Props) => {
@@ -13,7 +14,7 @@ export default (props: Props) => {
     // autoSlide={4000}
     // showArrows={false}
     >
-        {props.properties.map((property, i) => {
+        {!props.loading?props.properties.map((property, i) => {
             return <div
 
             >
@@ -22,7 +23,19 @@ export default (props: Props) => {
                     key={i}
                 />
             </div>
-        })}
+        }):
+      <>
+        <FeaturedPropertyCard 
+        loading
+         />
+        <FeaturedPropertyCard 
+        loading
+         />
+        <FeaturedPropertyCard 
+        loading
+         />
+      </>
+        }
     </div>
 
 }

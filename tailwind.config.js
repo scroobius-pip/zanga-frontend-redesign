@@ -13,13 +13,13 @@ module.exports = {
       white: '#ffff',
       blue: {
         dark: '#234361',
-        default: '#234361',
+        DEFAULT: '#234361',
         light: '#00A1FC'
       },
       red: '#D33F49',
       grey: {
         dark: '#E3E9EC',
-        default: '#EFF3F5',
+        DEFAULT: '#EFF3F5',
         light: '#EFF3F5'
       },
       orange: '#FCBF49',

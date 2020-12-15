@@ -263,14 +263,14 @@ const Page = () => {
           </Card>
         </div>
         <section className="max-w-screen-lg mt-20 m-auto mb-48">
-          {!!featured.length && <>
+          <>
             <h3 className="text-center font-bold font-pop text-blue text-3xl">
               Featured Property
             </h3>
             <p className="text-center  font-pop text-blue text-base mb-10 ">
               Trusted and beautiful properties in Nigeria
             </p>
-            <FeaturedPropertyCardSlider properties={featured} />
+            <FeaturedPropertyCardSlider properties={featured} loading={!featured.length}/>
             <div className="max-w-screen-lg mt-12 m-auto flex justify-end">
               <a href="/properties?type=Sale&state=Abuja">
                 <Button
@@ -283,7 +283,7 @@ const Page = () => {
                 />
               </a>
             </div>
-          </>}
+          </>
         </section>
 
       </div>
