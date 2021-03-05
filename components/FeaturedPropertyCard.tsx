@@ -40,7 +40,7 @@ export default (
         // alt={title}
         // src={}
         >
-          <a c href={"/property/" + slug}>
+          <a  href={"/property/" + slug}>
             <Button
               className="absolute right-0 bottom-0 opacity-0 group-hover:opacity-100 duration-200"
               variant="secondary"
