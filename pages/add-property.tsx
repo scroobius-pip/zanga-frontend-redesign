@@ -22,7 +22,7 @@ const Page = () => {
 
     const sdk = getZangaSdk(session?.token)
 
-    if (!loading && !session) {
+    if (!sessionLoading && !session) {
       router.replace('/')
       return
     }
