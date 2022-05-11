@@ -8,7 +8,7 @@ export interface Props {
 }
 
 export default (props: Props) => {
-    return <div
+    return {props.loading && <div
         className="grid grid-cols-1  sm:grid-cols-2 gap-4 md:grid-cols-3 "
     // cardsToShow={1}
     // autoSlide={4000}
@@ -24,7 +24,7 @@ export default (props: Props) => {
                 />
             </div>
         }):
-     {props.loading && <>
+      <>
         <FeaturedPropertyCard 
         loading
          />
@@ -35,8 +35,8 @@ export default (props: Props) => {
         loading
          />
       </>
-}
+
         }
     </div>
-
+}
 }
