@@ -24,7 +24,7 @@ export default (props: Props) => {
                 />
             </div>
         }):
-      <>
+     {props.loading && <>
         <FeaturedPropertyCard 
         loading
          />
@@ -35,6 +35,7 @@ export default (props: Props) => {
         loading
          />
       </>
+}
         }
     </div>
 
