@@ -21,8 +21,9 @@ interface Props {
 const Page = () => {
   const [session, loading] = useSession();
   const [featured, setFeatured] = useState<FeaturedProps["properties"]>([]);
-
+  const [featuredLoading,setFeaturedLoading] = useState(true);
   const getFeatured = async () => {
+
     const sdk = getZangaSdk();
     const { properties = [] } = (await sdk.featuredProperties())
       ?.featuredProperties;
@@ -36,6 +37,8 @@ const Page = () => {
         title: p.title,
       })),
     );
+
+    setFeaturedLoading(false);
   };
 
   useEffect(() => {
@@ -270,7 +273,7 @@ const Page = () => {
             <p className="text-center  font-pop text-blue text-base mb-10 ">
               Trusted and beautiful properties in Nigeria
             </p>
-            <FeaturedPropertyCardSlider properties={featured} loading={!featured.length}/>
+            <FeaturedPropertyCardSlider properties={featured} loading={featuredLoading}/>
             <div className="max-w-screen-lg mt-12 m-auto flex justify-end">
               <a href="/properties?type=Sale&state=Abuja">
                 <Button
