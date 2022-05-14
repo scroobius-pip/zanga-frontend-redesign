@@ -31,6 +31,7 @@ export default (
             width: '100%',
             height: 0,
             paddingBottom: '80%',
+              backgroundPosition: 'center',
             backgroundImage: `url(${(image??'').replace(
               "tr:n-media_library_thumbnail",
               "tr:n-thumbnail"
